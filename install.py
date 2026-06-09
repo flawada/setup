@@ -1,7 +1,5 @@
 
 import sys
-import subprocess
-subprocess.run([sys.executable, "-m", "pip", "install", "PySide6"])
 from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
                              QPushButton, QLabel, QStatusBar, QMessageBox)
 from PySide6.QtGui import QAction, QKeySequence
