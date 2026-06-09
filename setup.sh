@@ -56,6 +56,8 @@ sudo dnf in -y mangowm
 sudo dnf in -y python3-pip
 pip install PySide6
 
+sudo dnf in -y mesa-libgbm mesa-libGL
+
 mkdir -p ~/.config/mango
 echo exec-once = python ${local_path}/mango/install.py > ~/.config/mango/config.conf
 mango
