@@ -60,4 +60,6 @@ sudo dnf in -y mesa-libgbm mesa-libGL
 
 mkdir -p ~/.config/mango
 echo exec-once = python ${local_path}/mango/install.py > ~/.config/mango/config.conf
+echo cursor_size = 24 >> ~/.config/mango/config.conf
+echo cursor_theme = hicolor >> ~/.config/mango/config.conf
 mango
