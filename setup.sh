@@ -26,7 +26,6 @@ if [ -z "$(ls -A)" ]; then
 fi
 
 set -e
-local_path=~/.cache/flawado
 
 if ! grep -q '^ID=fedora' /etc/os-release; then
   echo "! Warning ! : This script is made for fedora everthing"
@@ -43,8 +42,7 @@ if ! grep -q '^ID=fedora' /etc/os-release; then
 fi
 
 sudo dnf in -y git
-mkdir -p $local_path
-cd $local_path
+cd /tmp
 
 if [ -z "$(ls -A)" ]; then
   git clone https://github.com/flawada/mango
@@ -61,8 +59,8 @@ pip install PySide6
 sudo dnf in -y mesa-libgbm mesa-libGL
 
 mkdir -p ~/.config/mango
-echo exec-once = python ${local_path}/mango/install.py > ~/.config/mango/config.conf
+echo exec-once = python /tmp/mango/install.py > ~/.config/mango/config.conf
 echo cursor_size = 24 >> ~/.config/mango/config.conf
 echo cursor_theme = hicolor >> ~/.config/mango/config.conf
-#echo env= WLR_NO_HARDWARE_CURSORS,1 >> ~/.config/mango/config.conf
-mango
+echo env= WLR_NO_HARDWARE_CURSORS,1 >> ~/.config/mango/config.conf # Change to 0 later
+mango -c /tmp/mango/config.conf
