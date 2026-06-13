@@ -19,7 +19,7 @@ fi
 cd /tmp
 
 sudo dnf in -y git
-if [ -z "$(ls -A)" ]; then
+if [ -d "/tmp/mango" ]; then
   git clone https://github.com/flawada/mango
 fi
 
