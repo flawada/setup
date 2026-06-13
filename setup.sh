@@ -50,7 +50,9 @@ if [ -z "$(ls -A)" ]; then
   git clone https://github.com/flawada/mango
 fi
 
-sudo dnf in -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
+if rpm -q terra-release >/dev/null 2>&1; then
+  sudo dnf in -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
+fi
 sudo dnf in -y mangowm
 
 sudo dnf in -y python3-pip
