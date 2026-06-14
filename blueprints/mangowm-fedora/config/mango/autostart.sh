@@ -29,7 +29,7 @@ if ! pgrep -x "xfce-polkit" >/dev/null; then
 fi
 
 #lock
-gtklock -b ~/Documents/wallpapers/wallhaven-xe7ylv.png &
+gtklock -b ~/.config/mango/wallpaper.png &
 
 # nvim
 #foot -e nvim &
