@@ -7,7 +7,5 @@ i=0
 for blueprint in */; do
   ((i++))
   blueprints+=("$blueprint")
-  echo "$i) $blueprint"
+  echo "$i) ${blueprint%/}"
 done
-
-echo $blueprint
