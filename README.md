@@ -4,4 +4,4 @@ config install script
 
 in work, dont use
 
-bash <(curl -s "https://flawada.github.io/mango/setup.sh")
+bash <(curl -s "https://flawada.github.io/blueprint/setup.sh")
