@@ -46,7 +46,7 @@ done
 
 read -p "select blueprint: " item
 
-#clear
+clear
 
 cd ${blueprints[$item]}
 
