@@ -38,9 +38,9 @@ i=0
 
 for blueprint in */; do
   blueprints+=("$blueprint")
-  echo test-q
+
   echo "$i) ${blueprint%/}"
-  echo test-w
+
   i=$((i+1))
 done
 
