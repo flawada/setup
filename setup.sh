@@ -9,8 +9,6 @@ BLUE='\033[0;34m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-repo='config'
-
 if [ -f /etc/os-release ]; then
     source /etc/os-release
 else
@@ -30,7 +28,7 @@ case "$ID" in
     ;;
 esac
 
-echo <(curl "https://raw.githubusercontent.com/flawada/blueprint/main/blueprints/$ID/options.txt")
+cat <(curl -s "https://raw.githubusercontent.com/flawada/blueprint/main/blueprints/$ID/options.txt")
 
 
 
