@@ -41,8 +41,8 @@ done
 
 curl -sL https://raw.githubusercontent.com/flawada/blueprint/main/blueprints/$ID/$blueprint/files.tar | tar -xf - -C /tmp
 
+cd /tmp/files
 
-exit 1
 ### install: gum, tar (gunzip)
 case "$ID" in
   fedora)
@@ -54,6 +54,7 @@ case "$ID" in
     ;;
 esac
 
+bash setup.sh
 
 #### deprecated ####
 
