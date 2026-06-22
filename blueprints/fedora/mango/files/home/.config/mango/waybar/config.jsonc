@@ -49,7 +49,7 @@
     "tooltip-format": "{ifname} via {gwaddr}",
     "format-linked": "{ifname} (No IP)",
     "format-disconnected": "Disconnected ⚠",
-    "on-click": "kitty --class nmtui nmtui"
+    "on-click": "ghostty --class=nmtui -e nmtui"
     // "format-alt": "{ifname}: {ipaddr}/{cidr}",
   },
   "clock": {

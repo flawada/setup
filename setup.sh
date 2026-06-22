@@ -24,7 +24,6 @@ if [[ "${OS[*]}" == *"$ID"* ]]; then
 fi
 
 
-
 blueprints=($(curl -s "https://api.github.com/repos/flawada/config/contents/blueprints/$ID" | grep "name" | cut -d '"' -f 4))
 
 

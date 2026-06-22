@@ -4,10 +4,10 @@ configuration {
     show-icons:true;
     matching: "regex";
     drun-match-fields: "name";
-    display-run: "Menu:";
-    display-ssh: "SSH:";
-    display-drun: "Apps:";
-    display-window: "Windows:";
+    display-run: "";
+    display-ssh: "";
+    display-drun: "";
+    display-window: "";
 }
 
 @theme "tokyo"
@@ -24,10 +24,10 @@ configuration {
 }
 
 window {
-    location:       center;
+    location:       north;
     width:          480;
-    y-offset:       -20;
-    border-radius:  24px;
+    y-offset:       10;
+    border-radius:  12px;
 
     border: 1px;
     border-color: @bg3;
@@ -35,7 +35,7 @@ window {
 }
 
 mainbox {
-    padding:    12px;
+    padding:    15px;
 }
 
 inputbar {
@@ -54,13 +54,12 @@ prompt {
 }
 
 entry {
-    placeholder:        "Search";
     placeholder-color:  @cyan;
 }
 
 message {
     margin:             12px 0 0;
-    border-radius:      16px;
+    border-radius:      12px;
     border-color:       @bg2;
     background-color:   @bg2;
 }
@@ -82,7 +81,7 @@ listview {
 element {
     padding:        8px 16px;
     spacing:        8px;
-    border-radius:  16px;
+    border-radius:  12px;
 }
 
 element normal urgent {
