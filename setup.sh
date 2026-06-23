@@ -5,7 +5,7 @@ set -e
 # colors
 RED='\033[0;31m'
 YELLOW='\033[0;33m'
-BLUE='\033[0;34m'
+BLUE='\033[0;94m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
@@ -61,10 +61,12 @@ printf "\n━━━━━━━━━━━━━━━━━━━━━━━�
 
 printf "%bDownloading..%b\n" "$BLUE" "$NC"
 
-### install: gum, tar (gunzip)
 curl -sL https://raw.githubusercontent.com/flawada/blueprint/main/blueprints/$ID/$blueprint/files.tar | tar -xf - -C /tmp
 
-cd /tmp/files
+if ! [ -f /tmp/files/setup.sh ]; then
+    printf "%bError:/tmp/files/setup.sh does not exist. Something went wrong when downloading. %b\n" "$RED" "$NC"
+    exit 1
+else
 
 printf "%bDownloaded to /tmp%b\n" "$GREEN" "$NC"
 
@@ -72,4 +74,8 @@ printf "\n━━━━━━━━━━━━━━━━━━━━━━━�
 
 printf "%bInstalling..%b\n" "$BLUE" "$NC"
 
-sudo bash setup.sh
+while ! sudo -v; do
+  sleep 1
+done
+
+bash /tmp/files/setup.sh
