@@ -66,10 +66,10 @@ curl -sL https://raw.githubusercontent.com/flawada/blueprint/main/blueprints/$ID
 
 cd /tmp/files
 
-printf "%bDone%b\n" "$GREEN" "$NC"
+printf "%bDownloaded to /tmp%b\n" "$GREEN" "$NC"
 
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
 
-printf "%Installing..%b\n" "$BLUE" "$NC"
+printf "%bInstalling..%b\n" "$BLUE" "$NC"
 
-bash setup.sh
+sudo bash setup.sh
