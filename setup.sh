@@ -66,7 +66,7 @@ curl -sL https://raw.githubusercontent.com/flawada/blueprint/main/blueprints/$ID
 if ! [ -f /tmp/files/setup.sh ]; then
     printf "%bError:/tmp/files/setup.sh does not exist. Something went wrong when downloading. %b\n" "$RED" "$NC"
     exit 1
-else
+fi
 
 printf "%bDownloaded to /tmp%b\n" "$GREEN" "$NC"
 
