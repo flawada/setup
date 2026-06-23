@@ -1,12 +1,12 @@
 sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release -y
 sudo dnf copr enable -y leloubil/wl-clip-persist
-sudo dnf copr enable -y sneexy/zen-browser
+#sudo dnf copr enable -y sneexy/zen-browser
 
-sudo dnf in -y mangowm ghostty thunar waybar mako wlsunset swaybg wl-clip-persist cliphist gtklock playerctl rofi wlogout blueman-manager pavucontrol nm-connection-editor xdg-desktop-portal xdg-desktop-portal-wlr xorg-x11-server-Xwayland xfce-polkit gedit nwg-look xdg-user-dirs zsh eza zen-browser git
+sudo dnf in -y mangowm ghostty thunar waybar mako wlsunset swaybg wl-clip-persist cliphist gtklock playerctl rofi wlogout blueman-manager pavucontrol nm-connection-editor xdg-desktop-portal xdg-desktop-portal-wlr xorg-x11-server-Xwayland xfce-polkit gedit nwg-look xdg-user-dirs zsh eza git
 
 xdg-user-dirs-update
 
-# engrampa xorg-x11-server-Xwayland
+# engrampa zen-browser
 
 cp -r /tmp/files/home/. ~
 curl -Lso ~/.config/mango/wallpaper.png https://w.wallhaven.cc/full/xe/wallhaven-xe7ylv.png
