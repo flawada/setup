@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -e
+
 sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release -y
 sudo dnf copr enable -y leloubil/wl-clip-persist
 sudo dnf copr enable -y sneexy/zen-browser
