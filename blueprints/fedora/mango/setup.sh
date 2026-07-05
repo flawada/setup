@@ -72,7 +72,7 @@ fi
 
 clear
 
-if inxi -G | grep -q -i "NVIDIA"; then
+if lsmod | grep -q nouveau; then
   printf "Nvidia hardware detected. Install rpmfusion?\nNote: This will install modern drivers. Dont use if you have a legacy card.\n"
   while true; do
     read -rn 1 -p "(y/n): " yn
