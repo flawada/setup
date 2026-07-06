@@ -1,11 +1,11 @@
 {
   "layer": "top",
-  "position": "top",
+  "position": "bottom",
   "width": "auto",
   "height": 36,
-  "modules-left": [ "ext/workspaces"],
-  "modules-center": ["clock"],
-  "modules-right": ["network", "bluetooth", "wireplumber", "battery", "mpris" , "custom/power"],
+  "modules-left": [ "custom/power", "network", "bluetooth", "wireplumber", "mpris", "battery"  ],
+  "modules-center": [ "clock" ],
+  "modules-right": [ "ext/workspaces" ],
 
   "mpris": {
     "format": "{player_icon}{title}",
@@ -33,7 +33,7 @@
     "format-icons": ["<span color='#bbbbbb'></span>"],
     "format": "{icon}",
     "tooltip": false,
-    "on-click": "wlogout"
+    "on-click": "wlogout -l ~/.config/mango/wlogout/layout -C ~/.config/mango/wlogout/style.css -m 300"
   },
   "ext/workspaces": {
     "disable-scroll": true,
@@ -61,8 +61,10 @@
         "mode-mon-col": 4,
         "on-scroll" : 1,
         "format": {
-            "today": "<span color='#3d3555' background='#bbbbbb'><b>{}</b></span>"
-        }
+        "month": "<span color='#ffead3'><b>{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b>{}</b></span>",
+      },
     },
     "actions": {
         "on-click": "mode",

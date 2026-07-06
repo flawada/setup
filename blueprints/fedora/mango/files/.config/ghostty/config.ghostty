@@ -4,3 +4,5 @@ confirm-close-surface = false
 cursor-style-blink = false
 keybind = performable:ctrl+c=copy_to_clipboard
 keybind = ctrl+v=paste_from_clipboard
+window-padding-x = 12
+window-padding-y = 9
