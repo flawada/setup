@@ -1,12 +1,9 @@
 #! /bin/bash
-#dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=wlroots
-#systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-#eval "$(dbus-launch --sh-syntax)" &
 
 export XDG_CURRENT_DESKTOP=wlroots
 
-#lock
-gtklock -b ~/.config/mango/wallpaper.png &
+# lock
+gtklock -b ~/.config/mango/wallpaper.png -T 60 &
 
 # theme
 gsettings set org.gnome.desktop.interface gtk-theme 'Graphite-Dark'
@@ -15,13 +12,12 @@ gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 #gsettings set org.gnome.desktop.interface icon-theme ''
 #gsettings set org.gnome.desktop.interface font-name ''
 
-
-# fast launch on GTK/Qt apps
+# fast launch GTK/Qt apps
 fc-cache -f &
 gtk-update-icon-cache -q &
 
 # notifications daemon
-mako &
+mako --default-timeout 10000 &
 
 # night light
 wlsunset -T 3501 -t 3500 &

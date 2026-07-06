@@ -20,15 +20,12 @@
     "on-scroll-down": "playerctl position 5-"
   },
 
-/*
   "custom/menu": {
-    "format-icons": ["<span color='#bbbbbb'font='17.5'>⛶ </span>"],
+    "format-icons": ["<span color='#bbbbbb'font='17.5'>⛶</span>"],
     "format": "{icon}",
     "tooltip": false,
     "on-click": "rofi -config ~/.config/mango/rofi/config.rasi -show drun -show-icons"
   },
-*/
-
   "custom/power": {
     "format-icons": ["<span color='#bbbbbb'></span>"],
     "format": "{icon}",
@@ -49,7 +46,7 @@
     "tooltip-format": "{ifname} via {gwaddr}",
     "format-linked": "{ifname} (No IP)",
     "format-disconnected": "Disconnected ⚠",
-    "on-click": "ghostty --title=nmtui -e nmtui"
+    "on-click": "ghostty --title=nmtui -e env NEWT_MONO=1 nmtui"
     // "format-alt": "{ifname}: {ipaddr}/{cidr}",
   },
   "clock": {
@@ -63,8 +60,8 @@
         "format": {
         "month": "<span color='#ffead3'><b>{}</b></span>",
         "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-        "today": "<span color='#ff6699'><b>{}</b></span>",
-      },
+        "today": "<span color='#ff6699'><b>{}</b></span>"
+        }
     },
     "actions": {
         "on-click": "mode",
