@@ -21,5 +21,5 @@ Currently only works for fedora (fedora everything).
 
 
 ```bash
-bash <(curl "https://raw.githubusercontent.com/flawada/config/main/setup.sh")
+bash <(curl "https://raw.githubusercontent.com/flawada/blueprint/main/setup.sh")
 ```
