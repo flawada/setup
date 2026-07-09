@@ -35,22 +35,21 @@ printf "\n━━━━━━━━━━━━━━━━━━━━━━━�
 printf "%bInstalling mangowm..%b\n" "$BLUE" "$NC"
 sudo dnf in -y mangowm
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-printf "%bInstalling system-basics..%b\n" "$BLUE" "$NC"
+printf "%bInstalling system basics..%b\n" "$BLUE" "$NC"
 sudo dnf in -y xdg-desktop-portal xdg-desktop-portal-wlr xorg-x11-server-Xwayland xfce-polkit zsh
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-printf "%bInstalling requirements..%b\n" "$BLUE" "$NC"
+printf "%bInstalling dotfile requirements..%b\n" "$BLUE" "$NC"
 sudo dnf in -y mako waybar wlogout blueman-manager pavucontrol nmtui playerctl wlsunset swaybg gtklock rofi wl-clip-persist cliphist eza tar git
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-printf "%bInstalling core Apps..%b\n" "$BLUE" "$NC"
+printf "%bInstalling core apps..%b\n" "$BLUE" "$NC"
 sudo dnf in -y zen-browser ghostty loupe gedit thunar thunar-archive-plugin file-roller xdg-user-dirs
+
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
 printf "%bUpdating user directories..%b\n" "$BLUE" "$NC"
 xdg-user-dirs-update
-printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-printf "%bInstalling setup requirements..%b\n" "$BLUE" "$NC"
 
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-printf "%bDownloading config files..%b\n" "$BLUE" "$NC"
+printf "%bDownloading dotfiles..%b\n" "$BLUE" "$NC"
 curl -Lf https://raw.githubusercontent.com/flawada/blueprint/main/blueprints/fedora/mangowm/files.tar | tar -xf - --strip-components=1 -C "$HOME"
 
 #if ! [ -e "$HOME/.zshrc" ]; then
@@ -64,6 +63,7 @@ curl -Lf https://raw.githubusercontent.com/flawada/blueprint/main/blueprints/fed
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
 printf "%bEnabling zsh..%b\n" "$BLUE" "$NC"
 sudo chsh -s "$(which zsh)" "$USER"
+
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
 printf "%bEnabling autologin..%b\n" "$BLUE" "$NC"
 printf '[Service]\nExecStart=\nExecStart=-/usr/sbin/agetty --autologin %s --noclear %%I $TERM\n' "$USER" | sudo systemctl edit getty@tty1 --stdin
@@ -82,24 +82,23 @@ printf "%bDownloading starship..%b\n" "$BLUE" "$NC"
 curl -sS https://starship.rs/install.sh | sh -s -- -y
 
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-printf "%bDownloading Graphite-gtk-theme..%b\n" "$BLUE" "$NC"
+printf "%bDownloading graphite-gtk-theme..%b\n" "$BLUE" "$NC"
 sassc=0
 if ! rpm -q sassc &>/dev/null; then
   sudo dnf in -y sassc
   sassc=1
 fi
-
 git clone --depth 1 https://github.com/vinceliuice/Graphite-gtk-theme
 cd Graphite-gtk-theme
 ./install.sh -c dark
 cd ..
 rm -rf Graphite-gtk-theme
-
 if [[ $sassc -eq 1 ]]; then
   sudo dnf rm -y sassc
 fi
+
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-printf "%bDownloading basic Wallpaper..%b\n" "$BLUE" "$NC"
+printf "%bDownloading basic wallpaper..%b\n" "$BLUE" "$NC"
 curl -Lfo "$HOME/.config/mango/wallpaper.png" https://w.wallhaven.cc/full/5y/wallhaven-5yr153.png
 
 if lspci | grep -iq nvidia; then
@@ -118,13 +117,13 @@ if lspci | grep -iq nvidia; then
     	    printf "."
     	    sleep 5
   	    done
+        printf "\n"
         if sudo akmods; then
-          printf "Done."
+          printf "Done.\n"
         else
-          printf "Something went wrong. Waiting 3m to to insure installation"
+          printf "Something went wrong when checking if its compiling. Waiting 3 minutes.\n"
           sleep 180
         fi
-        printf "\n"
         break;;
       [Nn]* ) break;;
       * ) printf "Invalid\n";;
