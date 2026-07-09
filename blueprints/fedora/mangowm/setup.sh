@@ -24,33 +24,41 @@ if ! rpm -q terra-release &>/dev/null; then
   printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
   printf "%bInstalling terra repository..%b\n" "$BLUE" "$NC"
   sudo dnf in -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
+  printf "%bInstalled terra repository%b\n" "$GREEN" "$NC"
 fi
 
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-printf "%bInstalling copr-repositorys..%b\n" "$BLUE" "$NC"
+printf "%bInstalling copr-repositories..%b\n" "$BLUE" "$NC"
 sudo dnf copr enable -y leloubil/wl-clip-persist
 sudo dnf copr enable -y sneexy/zen-browser
+printf "%bInstalled copr-repositories%b\n" "$GREEN" "$NC"
 
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
 printf "%bInstalling mangowm..%b\n" "$BLUE" "$NC"
 sudo dnf in -y mangowm
+printf "%bInstalled mangowm%b\n" "$GREEN" "$NC"
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
 printf "%bInstalling system basics..%b\n" "$BLUE" "$NC"
 sudo dnf in -y xdg-desktop-portal xdg-desktop-portal-wlr xorg-x11-server-Xwayland xfce-polkit zsh
+printf "%bInstalled system basics%b\n" "$GREEN" "$NC"
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
 printf "%bInstalling dotfile requirements..%b\n" "$BLUE" "$NC"
 sudo dnf in -y mako waybar wlogout blueman-manager pavucontrol nmtui playerctl wlsunset swaybg gtklock rofi wl-clip-persist cliphist eza tar git
+printf "%bInstalled dotfile requirements%b\n" "$GREEN" "$NC"
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
 printf "%bInstalling core apps..%b\n" "$BLUE" "$NC"
 sudo dnf in -y zen-browser ghostty loupe gedit thunar thunar-archive-plugin file-roller xdg-user-dirs
+printf "%bInstalled core apps%b\n" "$GREEN" "$NC"
 
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
 printf "%bUpdating user directories..%b\n" "$BLUE" "$NC"
 xdg-user-dirs-update
+printf "%bUpdated user directories%b\n" "$GREEN" "$NC"
 
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
 printf "%bDownloading dotfiles..%b\n" "$BLUE" "$NC"
 curl -Lf https://raw.githubusercontent.com/flawada/blueprint/main/blueprints/fedora/mangowm/files.tar | tar -xf - --strip-components=1 -C "$HOME"
+printf "%bDownloaded dotfiles%b\n" "$GREEN" "$NC"
 
 #if ! [ -e "$HOME/.zshrc" ]; then
 #    printf "%bError: Something went wrong when downloading. %b\n" "$RED" "$NC"
@@ -63,10 +71,12 @@ curl -Lf https://raw.githubusercontent.com/flawada/blueprint/main/blueprints/fed
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
 printf "%bEnabling zsh..%b\n" "$BLUE" "$NC"
 sudo chsh -s "$(which zsh)" "$USER"
+printf "%bEnabled zsh%b\n" "$GREEN" "$NC"
 
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
 printf "%bEnabling autologin..%b\n" "$BLUE" "$NC"
 printf '[Service]\nExecStart=\nExecStart=-/usr/sbin/agetty --autologin %s --noclear %%I $TERM\n' "$USER" | sudo systemctl edit getty@tty1 --stdin
+printf "%bEnabled autologing%b\n" "$GREEN" "$NC"
 
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
 printf "%bDownloading zsh plugins..%b\n" "$BLUE" "$NC"
@@ -76,10 +86,12 @@ fi
 if [ ! -d "$HOME/.zsh/zsh-syntax-highlighting" ]; then
   git clone --depth 1 https://github.com/zsh-users/zsh-syntax-highlighting "$HOME/.zsh/zsh-syntax-highlighting"
 fi
+printf "%bDownloaded zsh plugins%b\n" "$GREEN" "$NC"
 
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-printf "%bDownloading starship..%b\n" "$BLUE" "$NC"
+printf "%bInstalling starship..%b\n" "$BLUE" "$NC"
 curl -sS https://starship.rs/install.sh | sh -s -- -y
+printf "%bInstalled starship%b\n" "$GREEN" "$NC"
 
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
 printf "%bDownloading graphite-gtk-theme..%b\n" "$BLUE" "$NC"
@@ -96,10 +108,12 @@ rm -rf Graphite-gtk-theme
 if [[ $sassc -eq 1 ]]; then
   sudo dnf rm -y sassc
 fi
+printf "%bDownloaded graphite-gtk-theme%b\n" "$GREEN" "$NC"
 
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-printf "%bDownloading basic wallpaper..%b\n" "$BLUE" "$NC"
+printf "%bDownloading wallpaper..%b\n" "$BLUE" "$NC"
 curl -Lfo "$HOME/.config/mango/wallpaper.png" https://w.wallhaven.cc/full/5y/wallhaven-5yr153.png
+printf "%bDownloaded wallpaper%b\n" "$GREEN" "$NC"
 
 if lspci | grep -iq nvidia; then
   printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
@@ -122,19 +136,14 @@ if lspci | grep -iq nvidia; then
           printf "%bSomething went wrong when checking if its compiling. Waiting 3 minutes.%b\n" "$YELLOW" "$NC"
           sleep 180
         fi
-        printf "%bDone.%b\n" "$GREEN" "$NC"
         break;;
       [Nn]* ) break;;
       * ) printf "%bInvalid.%b\n" "$YELLOW" "$NC";;
     esac
   done
-  printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
 fi
 
-printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-
 clear
-
 printf "%bDone. Rebooting in 10s..%b\n" "$GREEN" "$NC"
 sleep 10
 sudo reboot
