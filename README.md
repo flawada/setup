@@ -1,6 +1,6 @@
 # In work and mainly for myself.
 
-Currently only works for fedora (fedora everything).
+## Currently only works for fedora (fedora everything).
 
 <details> 
   <summary>Fedora everything guide</summary>
