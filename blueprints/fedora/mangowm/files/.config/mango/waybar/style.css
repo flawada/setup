@@ -3,7 +3,7 @@
 }
 
 window#waybar {
-    background: rgba(34, 34, 34, 1);
+    background: rgba(40, 40, 40, 1);
     color: rgb(205, 214, 244);
 }
 
@@ -36,7 +36,7 @@ tooltip {
 
 tooltip label {
     border: 3px solid #777777;
-    background: #222222;
+    background: #282828;
     padding: 10px;
     border-radius: 7px;
     margin-bottom: 2px;
@@ -67,5 +67,5 @@ label#battery,
 label#cpu,
 label#memory,
 label#mpris {
-  background:rgba(255, 255, 255, 0.1);
+  background:rgba(255, 255, 255, 0.075);
 }
