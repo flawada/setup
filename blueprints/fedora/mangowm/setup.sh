@@ -172,4 +172,4 @@ fi
 clear
 printf "%bDone. relogging in 10s..%b\n" "$GREEN" "$NC"
 sleep 10
-pkill -u $USER
+loginctl terminate-user $USER
