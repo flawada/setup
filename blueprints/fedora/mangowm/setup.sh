@@ -27,11 +27,17 @@ if ! rpm -q terra-release &>/dev/null; then
   printf "%bInstalled terra repository%b\n" "$GREEN" "$NC"
 fi
 
-printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-printf "%bInstalling copr-repositories..%b\n" "$BLUE" "$NC"
-sudo dnf copr enable -y leloubil/wl-clip-persist
-sudo dnf copr enable -y sneexy/zen-browser
-printf "%bInstalled copr-repositories%b\n" "$GREEN" "$NC"
+if ! [[ -f "/etc/yum.repos.d/_copr:copr.fedorainfracloud.org:leloubil:wl-clip-persist.repo" && -f "/etc/yum.repos.d/_copr:copr.fedorainfracloud.org:sneexy:zen-browser.repo" ]];then
+  printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
+  printf "%bInstalling copr-repositories..%b\n" "$BLUE" "$NC"
+  if ! [[ -f "/etc/yum.repos.d/_copr:copr.fedorainfracloud.org:leloubil:wl-clip-persist.repo" ]];then
+    sudo dnf copr enable -y leloubil/wl-clip-persist
+  fi
+  if ! [[ -f "/etc/yum.repos.d/_copr:copr.fedorainfracloud.org:sneexy:zen-browser.repo" ]];then
+    sudo dnf copr enable -y sneexy/zen-browser
+  fi
+  printf "%bInstalled copr-repositories%b\n" "$GREEN" "$NC"
+fi
 
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
 printf "%bInstalling mangowm..%b\n" "$BLUE" "$NC"
@@ -50,10 +56,12 @@ printf "%bInstalling core apps..%b\n" "$BLUE" "$NC"
 sudo dnf in -y zen-browser ghostty loupe gedit thunar thunar-archive-plugin file-roller xdg-user-dirs
 printf "%bInstalled core apps%b\n" "$GREEN" "$NC"
 
-printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-printf "%bUpdating user directories..%b\n" "$BLUE" "$NC"
-xdg-user-dirs-update
-printf "%bUpdated user directories%b\n" "$GREEN" "$NC"
+if [[ ! -f "$HOME/.config/user-dirs.dirs" ]]; then
+  printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
+  printf "%bCreating user directories..%b\n" "$BLUE" "$NC"
+  xdg-user-dirs-update
+  printf "%bCreated user directories%b\n" "$GREEN" "$NC"
+fi
 
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
 printf "%bDownloading dotfiles..%b\n" "$BLUE" "$NC"
@@ -63,54 +71,73 @@ printf "%bDownloaded dotfiles%b\n" "$GREEN" "$NC"
 # add checksum check
 # echo "hash path" | sha256sum --check
 
-printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-printf "%bEnabling zsh..%b\n" "$BLUE" "$NC"
-sudo chsh -s "$(which zsh)" "$USER"
-printf "%bEnabled zsh%b\n" "$GREEN" "$NC"
-
-printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-printf "%bEnabling autologin..%b\n" "$BLUE" "$NC"
-printf '[Service]\nExecStart=\nExecStart=-/usr/sbin/agetty --autologin %s --noclear %%I $TERM\n' "$USER" | sudo systemctl edit getty@tty1 --stdin
-printf "%bEnabled autologing%b\n" "$GREEN" "$NC"
-
-printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-printf "%bDownloading zsh plugins..%b\n" "$BLUE" "$NC"
-if [ ! -d "$HOME/.zsh/zsh-autosuggestions" ]; then
-  git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions"
+if [[ "$SHELL" == *"zsh"* ]]; then
+  printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
+  printf "%bEnabling zsh..%b\n" "$BLUE" "$NC"
+  sudo chsh -s "$(which zsh)" "$USER"
+  printf "%bEnabled zsh%b\n" "$GREEN" "$NC"
 fi
-if [ ! -d "$HOME/.zsh/zsh-syntax-highlighting" ]; then
-  git clone --depth 1 https://github.com/zsh-users/zsh-syntax-highlighting "$HOME/.zsh/zsh-syntax-highlighting"
+
+if ! grep -q -- "--autologin $USER" /etc/systemd/system/getty@tty1.service.d/override.conf &> /dev/null; then
+  printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
+  printf "%bEnabling autologin..%b\n" "$BLUE" "$NC"
+  printf '[Service]\nExecStart=\nExecStart=-/usr/sbin/agetty --autologin %s --noclear %%I $TERM\n' "$USER" | sudo systemctl edit getty@tty1 --stdin
+  printf "%bEnabled autologing%b\n" "$GREEN" "$NC"
 fi
-printf "%bDownloaded zsh plugins%b\n" "$GREEN" "$NC"
 
-printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-printf "%bInstalling starship..%b\n" "$BLUE" "$NC"
-curl -sS https://starship.rs/install.sh | sh -s -- -y
-printf "%bInstalled starship%b\n" "$GREEN" "$NC"
-
-printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-printf "%bDownloading graphite-gtk-theme..%b\n" "$BLUE" "$NC"
-sassc=0
-if ! rpm -q sassc &>/dev/null; then
-  sudo dnf in -y sassc
-  sassc=1
+if ! [[ -d "$HOME/.zsh/zsh-autosuggestions" && -d "$HOME/.zsh/zsh-syntax-highlighting" ]]; then
+  printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
+  printf "%bDownloading zsh plugins..%b\n\n" "$BLUE" "$NC"
+  if ! [ -d "$HOME/.zsh/zsh-autosuggestions" ]; then
+    git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions"
+  fi
+  if ! [ -d "$HOME/.zsh/zsh-syntax-highlighting" ]; then
+    git clone --depth 1 https://github.com/zsh-users/zsh-syntax-highlighting "$HOME/.zsh/zsh-syntax-highlighting"
+  fi
+  printf "%bDownloaded zsh plugins%b\n" "$GREEN" "$NC"
 fi
-git clone --depth 1 https://github.com/vinceliuice/Graphite-gtk-theme
-cd Graphite-gtk-theme
-./install.sh -c dark
-cd ..
-rm -rf Graphite-gtk-theme
-if [[ $sassc -eq 1 ]]; then
-  sudo dnf rm -y sassc
+
+if ! [ -d "$HOME/.config/ghostty/shaders" ]; then
+  printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
+  printf "%bDownloading ghostty cursor shaders..%b\n" "$BLUE" "$NC"
+  git clone https://github.com/sahaj-b/ghostty-cursor-shaders ~/.config/ghostty/shaders
+  printf "%bDownloaded ghostty cursor shaders%b\n" "$GREEN" "$NC"
 fi
-printf "%bDownloaded graphite-gtk-theme%b\n" "$GREEN" "$NC"
 
-printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-printf "%bDownloading wallpaper..%b\n" "$BLUE" "$NC"
-curl -Lfo "$HOME/.config/mango/wallpaper.png" https://w.wallhaven.cc/full/5y/wallhaven-5yr153.png
-printf "%bDownloaded wallpaper%b\n" "$GREEN" "$NC"
+if ! command -v starship &> /dev/null; then
+  printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
+  printf "%bInstalling starship..%b\n" "$BLUE" "$NC"
+  curl -sS https://starship.rs/install.sh | sh -s -- -y
+  printf "%bInstalled starship%b\n" "$GREEN" "$NC"
+fi
 
-if lspci | grep -iq nvidia; then
+if ! [ -d "$HOME/.themes/Graphite-Dark" ]; then
+  printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
+  printf "%bDownloading graphite-gtk-theme..%b\n" "$BLUE" "$NC"
+  sassc=0
+  if ! rpm -q sassc &>/dev/null; then
+    sudo dnf in -y sassc
+    sassc=1
+  fi
+  git clone --depth 1 https://github.com/vinceliuice/Graphite-gtk-theme
+  cd Graphite-gtk-theme
+  ./install.sh -c dark
+  cd ..
+  rm -rf Graphite-gtk-theme
+  if [[ $sassc -eq 1 ]]; then
+    sudo dnf rm -y sassc
+  fi
+  printf "%bDownloaded graphite-gtk-theme%b\n" "$GREEN" "$NC"
+fi
+
+if ! [ -f "$HOME/.config/mango/wallpaper.png" ]; then
+  printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
+  printf "%bDownloading wallpaper..%b\n" "$BLUE" "$NC"
+  curl -Lfo "$HOME/.config/mango/wallpaper.png" https://w.wallhaven.cc/full/5y/wallhaven-5yr153.png
+  printf "%bDownloaded wallpaper%b\n" "$GREEN" "$NC"
+fi
+
+if lspci | grep -iq nvidia && ! command -v akmods &> /dev/null; then
   printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
   printf "%bNvidia hardware detected. Install rpmfusion?\nNote: This will install modern drivers. Dont use if you have a legacy card.%b\n" "$BLUE" "$NC"
   while true; do
