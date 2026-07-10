@@ -160,15 +160,15 @@ if grep -q "^nouveau" <(lsmod); then
           printf "%bSomething went wrong when checking if its compiling. Waiting 3 minutes.%b\n" "$YELLOW" "$NC"
           sleep 180
         fi
+        clear
+        printf "%bDone. Rebooting in 10s..%b\n" "$GREEN" "$NC"
+        sleep 10
+        sudo reboot
         break;;
       [Nn]* ) break;;
       * ) printf "%bInvalid.%b\n" "$YELLOW" "$NC";;
     esac
   done
-  clear
-  printf "%bDone. Rebooting in 10s..%b\n" "$GREEN" "$NC"
-  sleep 10
-  sudo reboot
 fi
 
 clear
