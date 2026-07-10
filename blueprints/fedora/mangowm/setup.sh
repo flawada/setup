@@ -139,11 +139,6 @@ if ! grep -q -- "--autologin $USER" /etc/systemd/system/getty@tty1.service.d/ove
   printf "%bEnabled autologin%b\n" "$GREEN" "$NC"
 fi
 
-grep "0x10de" /sys/bus/pci/devices/*/vendor 2>/dev/null
-rpm -q akmods
-
-sleep 10
-
 if grep -q "0x10de" /sys/bus/pci/devices/*/vendor && ! rpm -q akmods; then
   printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
   printf "%bNvidia hardware detected. Install rpmfusion?\nNote: This will install modern drivers. Dont use if you have a legacy card.%b\n" "$BLUE" "$NC"
