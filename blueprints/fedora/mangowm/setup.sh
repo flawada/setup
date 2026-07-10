@@ -32,17 +32,13 @@ if ! rpm -q terra-release &>/dev/null; then
   printf "%bInstalled terra repository%b\n" "$GREEN" "$NC"
 fi
 
-if ! [[ -f "/etc/yum.repos.d/_copr:copr.fedorainfracloud.org:leloubil:wl-clip-persist.repo" && -f "/etc/yum.repos.d/librewolf.repo" ]];then
+if ! [[ -f "/etc/yum.repos.d/_copr:copr.fedorainfracloud.org:leloubil:wl-clip-persist.repo" ]];then
   printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-  printf "%bInstalling copr-repositories..%b\n" "$BLUE" "$NC"
-  if ! [[ -f "/etc/yum.repos.d/_copr:copr.fedorainfracloud.org:leloubil:wl-clip-persist.repo" ]];then
-    sudo dnf copr enable -y leloubil/wl-clip-persist
-  fi
-  if ! [[ -f "/etc/yum.repos.d/librewolf.repo" ]];then
-    sudo dnf config-manager addrepo --from-repofile=https://repo.librewolf.net/librewolf.repo
-  fi
-  printf "%bInstalled copr-repositories%b\n" "$GREEN" "$NC"
+printf "%bInstalling wl-clip-persist copr-repository..%b\n" "$BLUE" "$NC"
+  sudo dnf copr enable -y leloubil/wl-clip-persist
+  printf "%bInstalled wl-clip-persist copr-repository%b\n" "$GREEN" "$NC"
 fi
+
 
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
 printf "%bInstalling mangowm..%b\n" "$BLUE" "$NC"
@@ -58,7 +54,7 @@ sudo dnf in -y mako waybar wlogout blueman-manager pavucontrol nmtui playerctl w
 printf "%bInstalled dotfile requirements%b\n" "$GREEN" "$NC"
 printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
 printf "%bInstalling core apps..%b\n" "$BLUE" "$NC"
-sudo dnf in -y librewolf ghostty loupe gedit thunar thunar-archive-plugin file-roller xdg-user-dirs
+sudo dnf in -y firefox ghostty loupe gedit thunar thunar-archive-plugin file-roller xdg-user-dirs
 printf "%bInstalled core apps%b\n" "$GREEN" "$NC"
 
 if ! [[ -f "$HOME/.config/user-dirs.dirs" ]]; then
