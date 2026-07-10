@@ -14,11 +14,16 @@ window#waybar > box.horizontal:dir(ltr) {
   margin-right: 12px;
 }
 
+#workspaces button {
+    padding: 0 6px;
+    margin: 0 3px;
+}
+
 #workspaces button.focused,
 #workspaces button.active {
     color: rgb(30, 30, 30);
     background: rgba(255, 255, 255, 0.5);
-    padding: 0 16px;
+    padding: 0 10px;
 }
 
 #workspaces button.focused:hover,
@@ -42,7 +47,6 @@ tooltip label {
     margin-bottom: 2px;
 }
 
-#workspaces button,
 label#clock,
 label#wireplumber,
 label#bluetooth,
