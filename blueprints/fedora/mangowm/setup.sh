@@ -137,7 +137,7 @@ if ! [ -f "$HOME/.config/mango/wallpaper.png" ]; then
   printf "%bDownloaded wallpaper%b\n" "$GREEN" "$NC"
 fi
 
-if lsmod | grep -q "^nouveau"; then
+if grep -q "^nouveau" <(lsmod); then
   printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
   printf "%bNouveau detected, used by nvidia hardware. Install rpmfusion?\nNote: This will install modern drivers. Dont use if you have a legacy card.%b\n" "$BLUE" "$NC"
   while true; do
@@ -163,9 +163,13 @@ if lsmod | grep -q "^nouveau"; then
       * ) printf "%bInvalid.%b\n" "$YELLOW" "$NC";;
     esac
   done
+  clear
+  printf "%bDone. Rebooting in 10s..%b\n" "$GREEN" "$NC"
+  sleep 10
+  sudo reboot
 fi
 
 clear
-printf "%bDone. Rebooting in 10s..%b\n" "$GREEN" "$NC"
+printf "%bDone. logging out in 10s..%b\n" "$GREEN" "$NC"
 sleep 10
-sudo reboot
+logout
