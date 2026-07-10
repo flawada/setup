@@ -150,13 +150,8 @@ if grep -q "^nouveau" <(lsmod); then
       [Yy]* )
         sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
         sudo dnf install -y  gcc kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686
-        printf "%bCompiling driver modules. This might take a while..%b" "$BLUE" "$NC"
+        printf "%bCompiling driver modules..%b" "$BLUE" "$NC"
         sleep 10
-        while ps aux | grep -qE "akmods|akmodsbuild"; do
-    	    printf "%b.%b" "$BLUE" "$NC"
-    	    sleep 5
-  	    done
-        printf "\n"
         if ! sudo akmods; then
           printf "%bSomething went wrong when checking if its compiling. Waiting 3 minutes.%b\n" "$YELLOW" "$NC"
           sleep 180
