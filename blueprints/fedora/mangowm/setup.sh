@@ -71,20 +71,6 @@ printf "%bDownloaded dotfiles%b\n" "$GREEN" "$NC"
 # add checksum check
 # echo "hash path" | sha256sum --check
 
-if ! [[ "$SHELL" == *"zsh"* ]]; then
-  printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-  printf "%bEnabling zsh..%b\n" "$BLUE" "$NC"
-  sudo chsh -s "$(which zsh)" "$USER"
-  printf "%bEnabled zsh%b\n" "$GREEN" "$NC"
-fi
-
-if ! grep -q -- "--autologin $USER" /etc/systemd/system/getty@tty1.service.d/override.conf &> /dev/null; then
-  printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-  printf "%bEnabling autologin..%b\n" "$BLUE" "$NC"
-  printf '[Service]\nExecStart=-/usr/sbin/agetty --autologin %s --noclear %%I $TERM\n' "$USER" | sudo systemctl edit getty@tty1 --stdin
-  printf "%bEnabled autologing%b\n" "$GREEN" "$NC"
-fi
-
 if ! [[ -d "$HOME/.zsh/zsh-autosuggestions" && -d "$HOME/.zsh/zsh-syntax-highlighting" ]]; then
   printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
   printf "%bDownloading zsh plugins..%b\n\n" "$BLUE" "$NC"
@@ -135,6 +121,20 @@ if ! [ -f "$HOME/.config/mango/wallpaper.png" ]; then
   printf "%bDownloading wallpaper..%b\n" "$BLUE" "$NC"
   curl -Lfo "$HOME/.config/mango/wallpaper.png" https://w.wallhaven.cc/full/5y/wallhaven-5yr153.png
   printf "%bDownloaded wallpaper%b\n" "$GREEN" "$NC"
+fi
+
+if ! [[ "$SHELL" == *"zsh"* ]]; then
+  printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
+  printf "%bEnabling zsh..%b\n" "$BLUE" "$NC"
+  sudo chsh -s "$(which zsh)" "$USER"
+  printf "%bEnabled zsh%b\n" "$GREEN" "$NC"
+fi
+
+if ! grep -q -- "--autologin $USER" /etc/systemd/system/getty@tty1.service.d/override.conf &> /dev/null; then
+  printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
+  printf "%bEnabling autologin..%b\n" "$BLUE" "$NC"
+  printf '[Service]\nExecStart=-/usr/sbin/agetty --autologin %s --noclear %%I $TERM\n' "$USER" | sudo systemctl edit getty@tty1 --stdin
+  printf "%bEnabled autologin%b\n" "$GREEN" "$NC"
 fi
 
 if grep -q "^nouveau" <(lsmod); then
