@@ -27,13 +27,7 @@ bash <(curl "https://raw.githubusercontent.com/flawada/blueprint/main/setup.sh")
 
 <br>
 
----
-
-**[<kbd> <br> Fedora <br> </kbd>][Fedora]**
-
----
-
-<br>
+**[<kbd> Fedora </kbd>][Fedora]**
 
 </div>
 
