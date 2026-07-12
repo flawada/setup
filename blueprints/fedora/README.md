@@ -1,4 +1,7 @@
-## WIP
+## Fedora Everything
+
+https://fedoraproject.org/misc/#everything
+
 Software selection:
 - base environment -> Fedora Custom Operating System
 - additional software for selected environment -> if you are on a VM: Guest Agents; If you use wifi: Common Networkmanager
