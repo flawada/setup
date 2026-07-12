@@ -4,7 +4,7 @@
 
 
 
-**[<kbd> <br> Fedora Everything <br> </kbd>][Fedora]** 
+**[<kbd> <br> Fedora Everything <br> </kbd>][Fedora]** 
 
 <div align = center>
 </div>
