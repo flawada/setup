@@ -11,7 +11,7 @@ NC='\033[0m'
 
 function c() {
   while ! "$@"; do
-    printf "\nCommand '%s' failed.\n" "$*"
+    printf "\nCommand \"%s\" failed.\n" "$*"
     printf "r = Retry this command\n"
     printf "e = Exit\n"
     printf "s = Skip this command\n"
