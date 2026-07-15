@@ -86,7 +86,7 @@ if ! [ -f "$HOME/.config/mango/wallpaper.png" ]; then
   c curl -Lfo "$HOME/.config/mango/wallpaper.png" https://w.wallhaven.cc/full/5y/wallhaven-5yr153.png
 fi
 
-if ! [[ "$SHELL" == *"zsh"* ]]; the
+if ! [[ "$SHELL" == *"zsh"* ]]; then
   printc "Enabling zsh"
   c sudo chsh -s "$(which zsh)" "$USER"
 fi
