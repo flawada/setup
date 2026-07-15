@@ -16,14 +16,15 @@ function c() {
     printf "r = Retry this command\n"
     printf "e = Exit\n"
     printf "s = Skip this command\n"
-    printf "or enter a command to execute it"
-    read -rp "[r/e/s]: " p < /dev/tty
-    case $p in
-      [Rr]) printf "%bRetrying..%b\n" "$BLUE" "$NC" ;;
-      [Ee])  printf "%bExiting..%b\n" "$RED" "$NC"; exit 1 ;;
-      [Ss]) printf "%bSkipped this command%b\n" "$YELLOW" "$NC"; return 0 ;;
-      *) printf "%bExecuting %s..%b" "$BLUE" "$p" "$NC"; $p || true ;;
-    esac
+    printf "or enter a command to execute it\n"
+    while true;do
+      read -rp "[r/e/s]: " p < /dev/tty
+      case $p in
+        [Rr]) printf "%bRetrying..%b\n" "$BLUE" "$NC" break;;
+        [Ee])  printf "%bExiting..%b\n" "$RED" "$NC"; exit 1 ;;
+        [Ss]) printf "%bSkipped this command%b\n" "$YELLOW" "$NC"; return 0 ;;
+        *) printf "%bExecuting %s..%b" "$BLUE" "$p" "$NC"; $p || true ;;
+      esac
   done
 }
 
