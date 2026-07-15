@@ -33,9 +33,9 @@ c() {
 export -f c
 
 printc () {
-  printf "\n";printf '━%.0s' $(seq 1 ${#1}); printf "┓\n"
+  printf "\n┏";printf '━%.0s' $(seq 1 $((${#1}+4))); printf "┓\n"
   printf "┃ %b$1..%b ┃" "$BLUE" "$NC"
-  printf "\n┗";printf '━%.0s' $(seq 1 ${#1}); printf "┛\n\n"
+  printf "\n┗";printf '━%.0s' $(seq 1 $((${#1}+4))); printf "┛\n\n"
 }
 
 export -f printc
