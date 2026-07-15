@@ -17,12 +17,12 @@ function c() {
     printf "e = Exit\n"
     printf "s = Skip this command\n"
     printf "or enter a command to execute it"
-    read -rp "[r/e/s]: " p
+    read -rp "[r/e/s]: " p < /dev/tty
     case $p in
-      [Rr]) printf "%bRetrying..%b\n "$BLUE" "$NC"" ;;
+      [Rr]) printf "%bRetrying..%b\n" "$BLUE" "$NC" ;;
       [Ee])  printf "%bExiting..%b\n" "$RED" "$NC"; exit 1 ;;
       [Ss]) printf "%bSkipped this command%b\n" "$YELLOW" "$NC"; return 0 ;;
-      *) printf "executing %s.." "$BLUE" "$p" "$NC"; $p ;;
+      *) printf "%bExecuting %s..%b" "$BLUE" "$p" "$NC"; $p || true ;;
     esac
   done
 }
