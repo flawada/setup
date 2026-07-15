@@ -10,7 +10,7 @@ export GREEN='\033[0;32m'
 export NC='\033[0m'
 
 # functions
-export -f c() {
+c() {
   while ! "$@"; do
     printf "\n%bCommand \"%b%s%b\" failed%b\n" "$RED" "$YELLOW" "$*" "$RED" "$NC"
     printf "%bYou might need to fix this problem manually before proceeding%b\n\n" "$RED" "$NC"
@@ -30,11 +30,13 @@ export -f c() {
   done
 }
 
-export -f printc () {
+printc () {
   printf "\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
   printf "%b$1..%b\n" "$BLUE" "$NC"
   printf "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
 }
+
+export -f c printc
 
 clear
 
