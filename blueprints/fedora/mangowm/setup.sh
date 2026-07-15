@@ -17,7 +17,7 @@ function c() {
     printf "s = Skip this command\n"
     read -p "[R/e/s]: " p
     case $p in
-      [Ee])  printf "Exiting..\n";exit 1 ;;
+      [Ee])  printf "Exiting..\n"; exit 1 ;;
       [Ss]) printf "Skipping..\n"; return 0 ;;
       *) printf "Retrying..\n" ;;
     esac
