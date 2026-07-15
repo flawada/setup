@@ -12,11 +12,9 @@ NC='\033[0m'
 function o() {
   while ! "$@"; do
     printf "Command failed.\n"
-
     printf "r = Retry this command\n"
     printf "e = Exit\n"
     printf "s = Skip this command\n"
-
     read -p "[R/e/s]: " p
     case $p in
       [Ee])  printf "Exiting..\n";exit ;;
