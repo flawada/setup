@@ -20,10 +20,11 @@ function c() {
     while true;do
       read -rp "[r/e/s]: " p < /dev/tty
       case $p in
-        [Rr]) printf "%bRetrying..%b\n" "$BLUE" "$NC" break;;
+        [Rr]) printf "%bRetrying..%b\n" "$BLUE" "$NC"; break ;;
         [Ee])  printf "%bExiting..%b\n" "$RED" "$NC"; exit 1 ;;
         [Ss]) printf "%bSkipped this command%b\n" "$YELLOW" "$NC"; return 0 ;;
         *) printf "%bExecuting %s..%b" "$BLUE" "$p" "$NC"; $p || true ;;
+    done
       esac
   done
 }
