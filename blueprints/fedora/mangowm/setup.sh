@@ -24,8 +24,8 @@ function c() {
         [Ee])  printf "%bExiting..%b\n" "$RED" "$NC"; exit 1 ;;
         [Ss]) printf "%bSkipped this command%b\n" "$YELLOW" "$NC"; return 0 ;;
         *) printf "%bExecuting %s..%b" "$BLUE" "$p" "$NC"; $p || true ;;
-    done
       esac
+    done
   done
 }
 
