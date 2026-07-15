@@ -61,7 +61,7 @@ fi
 
 if ! command -v starship &> /dev/null; then
   printc "Installing starship"
-  c curl -sS https://starship.rs/install.sh | sh -s -- -y
+  c curl -sS https://starship.rs/install.sh | sh -s -- --yes --silent
 fi
 
 if ! [ -d "$HOME/.themes/Graphite-Dark" ]; then
