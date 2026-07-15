@@ -15,7 +15,7 @@ function c() {
     printf "r = Retry this command\n"
     printf "e = Exit\n"
     printf "s = Skip this command\n"
-    read -p "[R/e/s]: " p
+    read -rp "[R/e/s]: " p
     case $p in
       [Ee])  printf "Exiting..\n"; exit 1 ;;
       [Ss]) printf "Skipping..\n"; return 0 ;;
