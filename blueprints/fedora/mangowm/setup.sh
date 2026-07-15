@@ -11,19 +11,19 @@ NC='\033[0m'
 
 function c() {
   while ! "$@"; do
-    printf "\n%bCommand \"%b%s%b\" has failed%b\n" "$RED" "$YELLOW" "$*" "$RED" "$NC"
-    printf "%bYou may have to fix the problem manually before continuing%b\n\n" "$YELLOW" "$NC"
+    printf "\n%bCommand \"%b%s%b\" failed%b\n" "$RED" "$YELLOW" "$*" "$RED" "$NC"
+    printf "%bYou might need to fix this problem manually before proceeding%b\n\n" "$YELLOW" "$NC"
     printf "r = Retry this command\n"
     printf "e = Exit\n"
     printf "s = Skip this command\n"
-    printf "or enter a command to execute it\n"
+    printf "or enter a command to run it\n"
     while true;do
       read -rp "[r/e/s]: " p < /dev/tty
       case $p in
         [Rr]) printf "%bRetrying..%b\n" "$BLUE" "$NC"; break ;;
         [Ee])  printf "%bExiting..%b\n" "$RED" "$NC"; exit 1 ;;
         [Ss]) printf "%bSkipped this command%b\n" "$YELLOW" "$NC"; return 0 ;;
-        *) printf "%bExecuting %s..%b" "$BLUE" "$p" "$NC"; $p || true ;;
+        *) $p || true ;;
       esac
     done
   done
