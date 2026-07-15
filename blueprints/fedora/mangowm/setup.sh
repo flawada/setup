@@ -69,7 +69,7 @@ c sudo dnf in -y mako waybar wlogout blueman-manager pavucontrol nmtui playerctl
 printc "Installing core apps"
 c sudo dnf in -y firefox ghostty loupe gedit thunar thunar-archive-plugin file-roller xdg-user-dirs
 
-if ! [[ -f "$HOME/.config/user-dirs.dirs" ]]; the
+if ! [[ -f "$HOME/.config/user-dirs.dirs" ]]; then
   printc "Creating user directories"
   c xdg-user-dirs-update
 fi
