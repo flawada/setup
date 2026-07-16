@@ -52,10 +52,8 @@ printf "$(cat << EOF
 ┃  ┃${BLUE} ▄▄██▀ ██▄▄▄   ██   ▀███▀ ██     ${NC}┃
 ┃  ┃                                 ┃
 ┃  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-┃
-
-EOF
-)"
+┃\n
+EOF)"
 
 printc "Checking System"
 if [ -f /etc/os-release ]; then
