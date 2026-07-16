@@ -34,22 +34,22 @@ export -f c
 
 printc () {
   printf "\n┓\n┃"
-  printf "%*s" "$(( (COLUMNS - ${#1}+4) / 2 ))"
+  printf "%*s" "$(( (COLUMNS - ${#1}-10) / 2 ))"
   printf "┏"
-  printf '━%.0s' $(seq 1 $((${#1}+4)))
+  printf '━%.0s' $(seq 1 $((${#1}+6)))
   printf "┓\n"
 
-  printf '━%.0s' $(seq 1 $(( (COLUMNS - ${#1}-4) / 2 )))
-  printf "┫"
-  printf "%b%s..%b" "$BLUE" "$1" "$NC"
   printf "┣"
-  printf '━%.0s' $(seq 1 $(( (COLUMNS - ${#1}-4) / 2 )))
-  printf "\n"
+  printf '━%.0s' $(seq 1 $(( (COLUMNS - ${#1}-10) / 2 )))
+  printf "┫"
+  printf "  %b%s..%b  " "$BLUE" "$1" "$NC"
+  printf "┣"
+  printf '━%.0s' $(seq 1 $(( (COLUMNS - ${#1}-10) / 2 )))
 
   printf "\n┃"
-  printf "%*s" "$(( (COLUMNS - ${#1}+4) / 2 ))"
+  printf "%*s" "$(( (COLUMNS - ${#1}-10) / 2 ))"
   printf "┗"
-  printf '━%.0s' $(seq 1 $((${#1}+4)))
+  printf '━%.0s' $(seq 1 $((${#1}+6)))
   printf "┛\n┛\n\n"
 }
 
