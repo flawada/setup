@@ -39,7 +39,7 @@ printc () {
   printf '━%.0s' $(seq 1 $((${#1}+4)))
   printf "┓\n"
 
-  printf '━%.0s' $(seq 1 $(( (COLUMNS - ${#1}+4) / 2 ))
+  printf '━%.0s' $(seq 1 $(( (COLUMNS - ${#1}+4) / 2 )))
   printf "┫\n"
   printf "%b%s..%b ┃" "$BLUE" "$1" "$NC"
   printf "┣"
