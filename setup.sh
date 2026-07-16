@@ -43,6 +43,7 @@ printc () {
   printf "  %b%s..%b  " "$BLUE" "$1" "$NC"
   printf "┣"
   printf '━%.0s' $(seq 1 $(( (COLUMNS - ${#1}-8) / 2 )))
+  printf "\n"
 
   printf "%*s" "$(( (COLUMNS - ${#1}-8) / 2 ))"
   printf "┗"
@@ -63,7 +64,7 @@ ${BLUE}▄▄██▀ ██▄▄▄   ██   ▀███▀ ██   ${NC}
 EOF
 )\n"
 
-printc "Checking System"
+printc "Checking system"
 if [ -f /etc/os-release ]; then
     source /etc/os-release
 else
@@ -98,7 +99,7 @@ else
 fi
 printf "%b%s [selected]%b\n" "$GREEN" "$blueprint" "$NC"
 
-printc "Redirecting"
+printc "Redirecting to install"
 if sudo -v; then
     bash <(curl -LfsS https://raw.githubusercontent.com/flawada/blueprint/main/blueprints/$ID/$blueprint/setup.sh)
 fi
