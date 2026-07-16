@@ -33,24 +33,21 @@ c() {
 export -f c
 
 printc () {
-  printf "\n┓\n┃"
-  printf "%*s" "$(( (COLUMNS - ${#1}-10) / 2 ))"
+  printf "%*s" "$(( (COLUMNS - ${#1}-8) / 2 ))"
   printf "┏"
   printf '━%.0s' $(seq 1 $((${#1}+6)))
   printf "┓\n"
 
-  printf "┣"
-  printf '━%.0s' $(seq 1 $(( (COLUMNS - ${#1}-10) / 2 )))
+  printf '━%.0s' $(seq 1 $(( (COLUMNS - ${#1}-8) / 2 )))
   printf "┫"
   printf "  %b%s..%b  " "$BLUE" "$1" "$NC"
   printf "┣"
-  printf '━%.0s' $(seq 1 $(( (COLUMNS - ${#1}-10) / 2 )))
+  printf '━%.0s' $(seq 1 $(( (COLUMNS - ${#1}-8) / 2 )))
 
-  printf "\n┃"
-  printf "%*s" "$(( (COLUMNS - ${#1}-10) / 2 ))"
+  printf "%*s" "$(( (COLUMNS - ${#1}-8) / 2 ))"
   printf "┗"
   printf '━%.0s' $(seq 1 $((${#1}+6)))
-  printf "┛\n┛\n\n"
+  printf "┛\n\n"
 }
 
 export -f printc
@@ -60,15 +57,9 @@ export -f printc
 clear
 
 printf "$(cat << EOF
-┓
-┃  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃  ┃                                  ┃
-┃  ┃  ${BLUE} ▄▄▄▄ ▄▄▄▄▄ ▄▄▄▄▄▄ ▄▄ ▄▄ ▄▄▄▄ ${NC}  ┃
-┣━━┫  ${BLUE}███▄▄ ██▄▄    ██   ██ ██ ██▄█▀${NC}  ┃
-┃  ┃  ${BLUE}▄▄██▀ ██▄▄▄   ██   ▀███▀ ██   ${NC}  ┃
-┃  ┃                                  ┃
-┃  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-┛
+${BLUE} ▄▄▄▄ ▄▄▄▄▄ ▄▄▄▄▄▄ ▄▄ ▄▄ ▄▄▄▄ ${NC}
+${BLUE}███▄▄ ██▄▄    ██   ██ ██ ██▄█▀${NC}
+${BLUE}▄▄██▀ ██▄▄▄   ██   ▀███▀ ██   ${NC}
 EOF
 )\n"
 
