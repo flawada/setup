@@ -93,7 +93,9 @@ fi
 
 if ! grep -q -- "--autologin $USER" /etc/systemd/system/getty@tty1.service.d/override.conf &> /dev/null; then
   printc "Enabling autologin"
-  c printf '[Service]\nExecStart=\nExecStart=-/usr/sbin/agetty --autologin %s --noclear %%I $TERM\n' "$USER" | c sudo systemctl edit getty@tty1 --stdin
+  #printf '[Service]\nExecStart=\nExecStart=-/usr/sbin/agetty --autologin %s --noclear %%I $TERM\n' "$USER" | c sudo systemctl edit getty@tty1 --stdin
+  GETTY_CONF=$(printf '[Service]\nExecStart=\nExecStart=-/usr/sbin/agetty --autologin %s --noclear %%I $TERM\n' "$USER")
+  c sudo systemctl edit getty@tty1 --stdin <<< "$GETTY_CONF"
   c sudo systemctl daemon-reload
 fi
 
