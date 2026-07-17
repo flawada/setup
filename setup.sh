@@ -21,9 +21,9 @@ c() {
     while true;do
       read -rp "[r/e/s]: " p < /dev/tty
       case $p in
-        [Rr]) printf "%\nbRetrying..%b\n\n" "$BLUE" "$NC"; break ;;
+        [Rr]) printf "\n%bRetrying..%b\n\n" "$BLUE" "$NC"; break ;;
         [Ee])  printf "\n%bExiting..%b\n" "$RED" "$NC"; exit 1 ;;
-        [Ss]) printf "%\nbSkipped this command%b\n\n" "$YELLOW" "$NC"; return 0 ;;
+        [Ss]) printf "\n%bSkipped this command%b\n\n" "$YELLOW" "$NC"; return 0 ;;
         *) $p || true ;;
       esac
     done
