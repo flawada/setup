@@ -1,4 +1,4 @@
-# In work and mainly for myself.
+# Mainly for myself.
 
 ## Supported distros
 
