@@ -33,7 +33,7 @@ c() {
 export -f c
 
 printc () {
-  if [[ $COLUMNS -lt 72 ]]; then
+  if [[ $COLUMNS -lt 75 ]]; then
     printf "- %b%s..%b" "$BLUE" "$1" "$NC"
   else
     printf "\n"
@@ -62,7 +62,7 @@ export -f printc
 
 clear
 
-if [[ $COLUMNS -lt 72 ]]; then
+if [[ $COLUMNS -lt 75 ]]; then
   printf "*  %bSETUP%b\n\n" "$BLUE" "$NC"
 else
   printf "%*s" "$(( (COLUMNS - 30) / 2 ))"
