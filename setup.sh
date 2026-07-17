@@ -35,25 +35,25 @@ export -f c
 printc () {
   if [[ $COLUMNS -lt 72 ]]; then
     printf "- %b%s..%b" "$BLUE" "$1" "$NC"
-    return 0
+  else
+    printf "\n"
+    printf "%*s" "$(( (COLUMNS - ${#1} - 8) / 2 ))"
+    printf "┏"
+    printf "━%.0s" $(seq 1 $((${#1} + 6)))
+    printf "┓\n"
+
+    printf "━%.0s" $(seq 1 $(( (COLUMNS - ${#1} - 8) / 2 )))
+    printf "┫"
+    printf "  %b%s..%b  " "$BLUE" "$1" "$NC"
+    printf "┣"
+    printf "━%.0s" $(seq 1 $(( (COLUMNS - ${#1} - 8) / 2 )))
+    printf "\n"
+
+    printf "%*s" "$(( (COLUMNS - ${#1} - 8) / 2 ))"
+    printf "┗"
+    printf "━%.0s" $(seq 1 $((${#1} + 6)))
+    printf "┛\n\n"
   fi
-  printf "\n"
-  printf "%*s" "$(( (COLUMNS - ${#1} - 8) / 2 ))"
-  printf "┏"
-  printf "━%.0s" $(seq 1 $((${#1} + 6)))
-  printf "┓\n"
-
-  printf "━%.0s" $(seq 1 $(( (COLUMNS - ${#1} - 8) / 2 )))
-  printf "┫"
-  printf "  %b%s..%b  " "$BLUE" "$1" "$NC"
-  printf "┣"
-  printf "━%.0s" $(seq 1 $(( (COLUMNS - ${#1} - 8) / 2 )))
-  printf "\n"
-
-  printf "%*s" "$(( (COLUMNS - ${#1} - 8) / 2 ))"
-  printf "┗"
-  printf "━%.0s" $(seq 1 $((${#1} + 6)))
-  printf "┛\n\n"
 }
 
 export -f printc
