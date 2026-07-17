@@ -34,7 +34,7 @@ export -f c
 
 printc () {
   if [[ $COLUMNS -lt 75 ]]; then
-    printf "- %b%s..%b" "$BLUE" "$1" "$NC"
+    printf "~ %b%s..%b" "$BLUE" "$1" "$NC"
   else
     printf "\n"
     printf "%*s" "$(( (COLUMNS - ${#1} - 8) / 2 ))"
