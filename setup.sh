@@ -110,5 +110,5 @@ printf "%b%s [selected]%b\n" "$GREEN" "$blueprint" "$NC"
 
 printc "Redirecting to install"
 if sudo -v; then
-    bash <(curl -LfsS https://raw.githubusercontent.com/flawada/blueprint/main/install/$ID/$blueprint/setup.sh)
+    bash <(curl -LfsS https://raw.githubusercontent.com/flawada/blueprint/main/install/$ID/$blueprint/install.sh)
 fi
