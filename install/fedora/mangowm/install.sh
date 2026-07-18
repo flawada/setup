@@ -28,7 +28,6 @@ if ! [[ -f "/etc/yum.repos.d/_copr:copr.fedorainfracloud.org:leloubil:wl-clip-pe
   c sudo dnf copr enable -y leloubil/wl-clip-persist
 fi
 
-
 printc "Installing mangowm"
 c sudo dnf in -y mangowm
 printc "Installing system basics"
