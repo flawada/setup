@@ -44,7 +44,7 @@ if ! [[ -f "$HOME/.config/user-dirs.dirs" ]]; then
 fi
 
 printc "Downloading dotfiles"
-c curl -Lf https://raw.githubusercontent.com/flawada/blueprint/main/blueprints/fedora/mangowm/files.tar -o /tmp/files.tar
+c curl -Lf https://raw.githubusercontent.com/flawada/blueprint/main/install/fedora/mangowm/files.tar -o /tmp/files.tar
 c tar -xf /tmp/files.tar --strip-components=1 -C "$HOME"
 
 
