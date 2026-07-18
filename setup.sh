@@ -81,7 +81,8 @@ else
     exit 1
 fi
 
-if cat <(curl -s "https://api.github.com/repos/flawada/blueprint/contents/install") | grep "name" | grep -q "$ID"; then
+# remove those evil ahh pipes after curl, replace by cat <() and then go back to grep -q
+if curl -s "https://api.github.com/repos/flawada/blueprint/contents/install" | grep "name" | grep "$ID" > /dev/null 2>&1; then
     printf "%b%s [supported]%b\n" "$GREEN" "$PRETTY_NAME" "$NC"
 else
     printf "%b%s [unsupported]%b\n" "$RED" "$PRETTY_NAME" "$NC"
@@ -89,7 +90,7 @@ else
 fi
 
 printc "Loading blueprints"
-blueprints=($(cat <(curl -s "https://api.github.com/repos/flawada/blueprint/contents/install/$ID") | grep "name" | grep -v "README.md" | cut -d '"' -f 4))
+blueprints=($(curl -s "https://api.github.com/repos/flawada/blueprint/contents/install/$ID" | grep "name" | grep -v "README.md" | cut -d '"' -f 4))
 if [ "${#blueprints[@]}" -eq 0 ]; then
     printf "%bError: No blueprint found. %b\n" "$RED" "$NC"
     exit 1
