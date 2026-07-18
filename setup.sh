@@ -81,7 +81,7 @@ else
     exit 1
 fi
 
-if curl -s "https://api.github.com/repos/flawada/blueprint/contents/install" | grep "name" | grep "$ID"; then
+if curl -s "https://api.github.com/repos/flawada/blueprint/contents/install" | grep "name" | grep -q "$ID"; then
     printf "%b%s [supported]%b\n" "$GREEN" "$PRETTY_NAME" "$NC"
 else
     printf "%b%s [unsupported]%b\n" "$RED" "$PRETTY_NAME" "$NC"
