@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-#pipe exit
+# pipe exit
 trap "exit 1" TERM
 export TOP_PID=$$
 
@@ -26,7 +26,7 @@ c() {
       read -rp "[r/e/s]: " p < /dev/tty
       case $p in
         [Rr]) printf "\n%bRetrying..%b\n" "$BLUE" "$NC" > /dev/tty; break ;;
-        [Ee])  printf "\n%bExiting..%b\n" "$RED" "$NC" > /dev/tty; kill -s TERM $TOP_PID ;;
+        [Ee])  printf "\n%bExiting..%b\n" "$RED" "$NC" > /dev/tty; kill -s TERM $TOP_PID; return 0 ;;
         [Ss]) printf "\n%bSkipped this command%b\n" "$YELLOW" "$NC" > /dev/tty; return 0 ;;
         *) $p || true ;;
       esac
