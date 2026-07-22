@@ -1,4 +1,5 @@
-# Mainly for myself.
+# setup
+mainly for myself
 
 ## Supported distros
 
