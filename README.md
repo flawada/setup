@@ -1,8 +1,8 @@
 # setup
 
-detects the linux distro, checks the available post-install scripts and runs one.
+Detects the linux distro, checks the available post-install scripts and runs one.
 
-mainly for myself.
+Mainly for myself.
 
 ## Supported distros
 
