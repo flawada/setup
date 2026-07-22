@@ -85,7 +85,6 @@ else
     exit 1
 fi
 
-# commit to those evil ahh pipes
 if c curl -sf "https://api.github.com/repos/flawada/setup/contents/install" | grep "name" | grep '"'$ID'"'> /dev/null 2>&1; then
     printf "%b%s [supported]%b\n" "$GREEN" "$PRETTY_NAME" "$NC"
 else
