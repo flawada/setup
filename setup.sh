@@ -85,7 +85,7 @@ else
     exit 1
 fi
 
-if c curl -sf "https://api.github.com/repos/flawada/setup/contents/install" | grep "name" | grep '"'$ID'"'> /dev/null 2>&1; then
+if c curl -fsS "https://api.github.com/repos/flawada/setup/contents/install" | grep "name" | grep '"'$ID'"'> /dev/null 2>&1; then
     printf "%b%s [supported]%b\n" "$GREEN" "$PRETTY_NAME" "$NC"
 else
     printf "%b%s [unsupported]%b\n" "$RED" "$PRETTY_NAME" "$NC"
@@ -93,7 +93,7 @@ else
 fi
 
 printc "Loading blueprints"
-blueprints=($(c curl -sf "https://api.github.com/repos/flawada/setup/contents/install/$ID" | grep "name" | grep -v "README.md" | cut -d '"' -f 4))
+blueprints=($(c curl -fsS "https://api.github.com/repos/flawada/setup/contents/install/$ID" | grep "name" | grep -v "README.md" | cut -d '"' -f 4))
 if [ "${#blueprints[@]}" -eq 0 ]; then
     printf "%bError: No blueprint found. %b\n" "$RED" "$NC"
     exit 1
@@ -113,6 +113,6 @@ printf "%b%s [selected]%b\n" "$GREEN" "$blueprint" "$NC"
 
 printc "Redirecting to install"
 if sudo -v; then
-    c curl -fsSL https://raw.githubusercontent.com/flawada/setup/main/install/$ID/$blueprint/install.sh -o /tmp/install.sh
+    c curl -fsS https://raw.githubusercontent.com/flawada/setup/main/install/$ID/$blueprint/install.sh -o /tmp/install.sh
     bash /tmp/install.sh
 fi
