@@ -1,0 +1,20 @@
+background-color=#282828
+width=300
+height=110
+border-size=3
+border-radius=10
+max-icon-size=50
+default-timeout=10000
+font=monospace 10
+layer=overlay
+anchor=top-center
+
+[urgency=low]
+border-color=#777777
+
+[urgency=normal]
+border-color=#777777
+
+[urgency=high]
+border-color=#99424a
+default-timeout=0

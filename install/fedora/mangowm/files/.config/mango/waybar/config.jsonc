@@ -1,0 +1,92 @@
+{
+  "layer": "top",
+  "position": "bottom",
+  "width": "auto",
+  "height": 36,
+  "modules-left": [ "custom/power", "network", "bluetooth", "wireplumber", "mpris", "battery"  ],
+  "modules-center": [ "clock" ],
+  "modules-right": [ "ext/workspaces" ],
+
+  "mpris": {
+    "format": "{player_icon}{title}",
+    "player-icons": {
+      "default": "<span></span>",
+      "spotify": "<span color='#a094b3'>  |</span>"
+    },
+    "max-length": 25,
+    "on-click": "playerctl previous",
+    "on-click-right": "playerctl next",
+    "on-scroll-up": "playerctl position 5+",
+    "on-scroll-down": "playerctl position 5-"
+  },
+  "custom/power": {
+    "format-icons": ["<span color='#bbbbbb'></span>"],
+    "format": "{icon}",
+    "tooltip": false,
+    "on-click": "wlogout -l ~/.config/mango/wlogout/layout -C ~/.config/mango/wlogout/style.css -m 400",
+    "on-click-right": "waypaper"
+  },
+  "ext/workspaces": {
+    "disable-scroll": true,
+    "ignore-hidden": true,
+    "all-outputs": false,
+    "on-click": "activate",
+    "format": "{name}"
+  },
+  "network": {
+    // "max-length": 10,
+    "format-wifi": "{essid}  <span color='#bbbbbb'></span>",
+    "format-ethernet": "{ipaddr}/{cidr}",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "format-linked": "{ifname} (No IP)",
+    "format-disconnected": "Disconnected ⚠",
+    "on-click": "ghostty --title=nmtui -e env NEWT_MONO=1 nmtui"
+    // "format-alt": "{ifname}: {ipaddr}/{cidr}",
+  },
+  "clock": {
+    "on-click": "rofi -config ~/.config/mango/rofi/config.rasi -show drun -show-icons",
+    "format": "{:%b %d - %H:%M}",
+    "tooltip-format": "<span size='11pt' font='Geist Mono'>{calendar}</span>",
+    "calendar": {
+        "mode": "month",
+        "mode-mon-col": 4,
+        "on-scroll" : 1,
+        "format": {
+        "month": "<span color='#ffead3'><b>{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b>{}</b></span>"
+        }
+    },
+    "actions": {
+        "on-click-right": "mode",
+        "on-scroll-up": "shift_down",
+        "on-scroll-down": "shift_up"
+    }
+  },
+  "bluetooth": {
+    "format": "<span color='#bbbbbb'></span>",
+    "format-disabled": "<span color='#bbbbbb'>󰂲</span>",
+    "tooltip": false,
+    "on-click": "blueman-manager"
+  },
+  "wireplumber": {
+    "format": "{volume}% <span color='#bbbbbb'>{icon}</span>",
+    "format-icons": {
+      "default": ["", "", ""]
+    },
+    "format-muted": "<span color='#bbbbbb'></span>",
+    "on-click": "pavucontrol"
+  },
+  "battery": {
+    "states": {
+      // "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-full": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["<span color='#a094b3'></span>", "<span color='#a094b3'></span>", "<span color='#a094b3'></span>", "<span color='#a094b3'></span>", "<span color='#a094b3'></span>"]
+  }
+}
