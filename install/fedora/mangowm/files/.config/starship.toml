@@ -64,11 +64,11 @@ symbol = '─'
 style = 'fg:240'
 
 [directory]
-format ='[$read_only]($read_only_style)[ ](fg:31 bg:color_bg)[$path ]($style)'
-style = 'fg:39 bg:color_bg'
+format ='[$read_only]($read_only_style)[ ](fg:7 bg:color_bg)[$path ]($style)'
+style = 'fg:7 bg:color_bg'
 read_only_style = 'bold fg:31 bg:color_bg'
-repo_root_format = '[$read_only]($read_only_style)[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path ]($style)'
-before_repo_root_style = 'bold fg:31 bg:color_bg'
+repo_root_format = '[$read_only]($read_only_style)[ ](fg:7 bg:color_bg)[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path ]($style)'
+before_repo_root_style = 'bold fg:7 bg:color_bg'
 repo_root_style = 'bold fg:39 bg:color_bg'
 read_only = "󰌾 "
 home_symbol = '~'
