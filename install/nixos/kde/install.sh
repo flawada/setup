@@ -29,7 +29,6 @@ c sudo nixos-rebuild switch --impure --flake ~/.nixos
 #  c curl -Lfo "$HOME/.config/mango/wallpaper.png" https://w.wallhaven.cc/full/5y/wallhaven-5yr153.png
 #fi
 
-exit # del
 clear
 printf "%bDone. Rebooting in 10s..%b\n" "$GREEN" "$NC"
 sleep 10
