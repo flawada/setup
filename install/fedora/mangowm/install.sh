@@ -35,7 +35,7 @@ c sudo dnf in -y xdg-desktop-portal xdg-desktop-portal-wlr xorg-x11-server-Xwayl
 printc "Installing dotfile requirements"
 c sudo dnf in -y mako waybar wlogout blueman-manager pavucontrol nmtui playerctl wlsunset swaybg gtklock rofi wl-clip-persist cliphist eza tar git
 printc "Installing core apps"
-c sudo dnf in -y firefox ghostty loupe gedit thunar thunar-archive-plugin file-roller xdg-user-dirs
+c sudo dnf in -y firefox ghostty loupe kate thunar thunar-archive-plugin file-roller xdg-user-dirs
 
 if ! [[ -f "$HOME/.config/user-dirs.dirs" ]]; then
   printc "Creating user directories"
