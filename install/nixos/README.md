@@ -1,4 +1,4 @@
-## [NixOS](https://nixos.org/download/#nix-more)
+## [NixOS](https://nixos.org/download/#nixos-iso)
 
 ! this distro is not finished yet and will need manual adjustment !
 
