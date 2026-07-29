@@ -24,10 +24,10 @@ c tar -xf /tmp/files.tar --strip-components=1 -C "$HOME"
 printc "Updating"
 c sudo nixos-rebuild switch --impure --flake ~/.nixos
 
-#if ! [ -f "$HOME/.config/mango/wallpaper.png" ]; then
-#  printc "Downloading wallpaper"
-#  c curl -Lfo "$HOME/.config/mango/wallpaper.png" https://w.wallhaven.cc/full/5y/wallhaven-5yr153.png
-#fi
+if ! [ -f "$HOME/wallpaper.jpg" ]; then
+  printc "Downloading wallpaper"
+  c curl -Lfo "$HOME/wallpaper.jpg" https://w.wallhaven.cc/full/k8/wallhaven-k8ldjq.jpg
+fi
 
 clear
 printf "%bDone. Rebooting in 10s..%b\n" "$GREEN" "$NC"
