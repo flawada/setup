@@ -6,6 +6,7 @@ Mainly for myself.
 
 ## Supported distros
 
+**[<kbd> <br> NixOS <br> </kbd>](./install/nixos/README.md)** 
 **[<kbd> <br> Fedora Everything <br> </kbd>](./install/fedora/README.md)** 
 
 ## Installation
