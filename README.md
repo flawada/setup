@@ -16,5 +16,6 @@ bash <(curl "https://raw.githubusercontent.com/flawada/setup/main/setup.sh")
 
 ## Todo
 
-- distro: bedrock linux | de: niri? 
-- distro: nixos | de: kde?
+- distro: nixos ~
+- distro: bedrock linux
+

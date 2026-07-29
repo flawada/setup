@@ -1,6 +1,4 @@
-## [Fedora Everything][download]
-
-
+## [Fedora Everything](https://fedoraproject.org/misc/#everything)
 
 Software selection:
 - base environment -> Fedora Custom Operating System
@@ -10,10 +8,7 @@ Rest:
 - Complete the other installation steps by yourself
 
 Post-installation:
-- Log in and run the [bash script][bash]
-
-[bash]: https://github.com/flawada/blueprint/tree/main#bash-script
-[download]: https://fedoraproject.org/misc/#everything
+- Log in and run the [bash script](https://github.com/flawada/blueprint/tree/main#bash-script)
 
 ## Todo
 
