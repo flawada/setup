@@ -8,7 +8,7 @@ Rest:
 - Complete the other installation steps by yourself
 
 Post-installation:
-- Log in and run the [bash script](https://github.com/flawada/blueprint/tree/main#bash-script)
+- Log in and run the [bash script](https://github.com/flawada/setup/tree/main#installation)
 
 ## Todo
 

@@ -3,7 +3,7 @@
 ! this distro is not finished yet and will need manual adjustment !
 
 Post-installation:
-- Log in and run the [bash script](https://github.com/flawada/blueprint/tree/main#bash-script)
+- Log in and run the [bash script](https://github.com/flawada/setup/tree/main#installation)
 
 ## Todo
 
