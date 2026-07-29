@@ -50,8 +50,10 @@
     backupFileExtension = "backup";
   };
 
-  # autologin
-#  services.getty.autologinUser = "flawa";
+  # variables
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
 
   # cleanup
   nix.gc = {
@@ -88,10 +90,6 @@
 #    open = true;
 #    package = config.boot.kernelPackages.nvidiaPackages.stable;
 #    powerManagement.enable = false;
-#  };
-
-#  environment.sessionVariables = {
-#    NIXOS_OZONE_WL = "1";
 #  };
 
 }
