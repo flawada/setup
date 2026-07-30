@@ -15,11 +15,9 @@ else
   printf "%b██ ██ ▀██   ██  ▄▄██▀   ██  ██▀██ ██▄▄▄ ██▄▄▄ ██▀██  ██   ██ ▀███▀ ██ ▀██%b\n\n" "$BLUE" "$NC"
 fi
 
-
 printc "Downloading Configuration"
 c curl -Lf https://raw.githubusercontent.com/flawada/setup/main/install/nixos/kde/files.tar -o /tmp/files.tar
 c tar -xf /tmp/files.tar --strip-components=1 -C "$HOME"
-
 
 printc "Rebuilding System"
 c sudo nixos-rebuild switch --impure --flake ~/.nixos
