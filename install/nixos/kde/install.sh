@@ -16,12 +16,12 @@ else
 fi
 
 
-printc "Downloading config"
+printc "Downloading Configuration"
 c curl -Lf https://raw.githubusercontent.com/flawada/setup/main/install/nixos/kde/files.tar -o /tmp/files.tar
 c tar -xf /tmp/files.tar --strip-components=1 -C "$HOME"
 
 
-printc "Updating"
+printc "Rebuilding System"
 c sudo nixos-rebuild switch --impure --flake ~/.nixos
 
 if ! [ -f "$HOME/wallpaper.jpg" ]; then
@@ -30,6 +30,6 @@ if ! [ -f "$HOME/wallpaper.jpg" ]; then
 fi
 
 clear
-printf "%bDone. Rebooting in 10s..%b\n" "$GREEN" "$NC"
+printf "%bDone.\nRebooting in 10s..%b\n" "$GREEN" "$NC"
 sleep 10
 c sudo reboot
