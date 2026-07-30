@@ -48,7 +48,7 @@ printc () {
 
     printf "━%.0s" $(seq 1 $(( (COLUMNS - ${#1} - 8) / 2 )))
     printf "┫"
-    printf "  %b%s..%b  " "$BLUE" "$1" "$NC"
+    printf "  %b%s%b  " "$BLUE" "$1" "$NC"
     printf "┣"
     printf "━%.0s" $(seq 1 $(( (COLUMNS - ${#1} - 8) / 2 )))
     printf "\n"
