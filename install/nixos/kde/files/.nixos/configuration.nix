@@ -69,15 +69,12 @@
   # boot
   boot.loader.systemd-boot.configurationLimit = 3; 
 
-#  boot.loader.systemd-boot.extraEntries."fedora.conf" = ''
-#      title Fedora
-#      efi /EFI/fedora/shimx64.efi
-#    '';
+  #boot.loader.systemd-boot.extraEntries."fedora.conf" = ''
+  #    title Fedora
+  #    efi /EFI/fedora/shimx64.efi
+  #'';
 
   # kernel
-  #boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
+  #boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3; # https://github.com/xddxdd/nix-cachyos-kernel
   nix.settings.substituters = [ "https://attic.xuyh0120.win/lantian" ];
   nix.settings.trusted-public-keys = [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];
-
-
-
