@@ -43,7 +43,7 @@ printc () {
     printf "\n"
     printf "%*s" "$(( (COLUMNS - ${#1} - 8) / 2 ))"
     printf "┏"
-    printf "━%.0s" $(seq 1 $((${#1} + 6)))
+    printf "━%.0s" $(seq 1 $((${#1} + 4)))
     printf "┓\n"
 
     printf "━%.0s" $(seq 1 $(( (COLUMNS - ${#1} - 8) / 2 )))
@@ -55,7 +55,7 @@ printc () {
 
     printf "%*s" "$(( (COLUMNS - ${#1} - 8) / 2 ))"
     printf "┗"
-    printf "━%.0s" $(seq 1 $((${#1} + 6)))
+    printf "━%.0s" $(seq 1 $((${#1} + 4)))
     printf "┛\n\n"
   fi
 }
