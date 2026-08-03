@@ -24,7 +24,7 @@ printc "Adjusting configuration"
 sed -i "s/USERNAME/$USER/g" "$HOME/.nixos/configuration.nix"
 sed -i "s/HOSTNAME/$HOSTNAME/g" "$HOME/.nixos/flake.nix"
 sed -i "s/USERNAME/$USER/g" "$HOME/.nixos/home.nix"
-if grep -q "0x10de" /sys/bus/pci/devices/*/vendor && ! rpm -q akmods; then
+if grep -q "0x10de" /sys/bus/pci/devices/*/vendor; then
   cat "/tmp/files/mod/nvidia.nix" >> "$HOME/.nixos/configuration.nix"
 fi
 echo "}" >> "$HOME/.nixos/configuration.nix"
