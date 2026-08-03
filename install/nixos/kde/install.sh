@@ -21,12 +21,15 @@ c tar -xf /tmp/files.tar -C /tmp
 c cp -r "/tmp/files/.nixos" "$HOME"
 
 printc "Adjusting configuration"
+printf "\n%Adjusting username and hostname..%b\n" "$BLUE" "$NC"
 sed -i "s/USERNAME/$USER/g" "$HOME/.nixos/configuration.nix"
 sed -i "s/HOSTNAME/$HOSTNAME/g" "$HOME/.nixos/flake.nix"
 sed -i "s/USERNAME/$USER/g" "$HOME/.nixos/home.nix"
 if grep -q "0x10de" /sys/bus/pci/devices/*/vendor; then
+  printf "\n%bAdding nvidia modification.%b\n" "$BLUE" "$NC"
   cat "/tmp/files/mod/nvidia.nix" >> "$HOME/.nixos/configuration.nix"
 fi
+printf "\n%Closing configuration..%b\n" "$BLUE" "$NC"
 echo "}" >> "$HOME/.nixos/configuration.nix"
 
 printc "Rebuilding system"
