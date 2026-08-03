@@ -1,6 +1,4 @@
 {
-  description = "flake";
-
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     home-manager = {
@@ -11,7 +9,7 @@
   };
 
   outputs = { self, nixpkgs, home-manager, nix-cachyos-kernel }: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.HOSTNAME = nixpkgs.lib.nixosSystem {
       modules = [
         {
           nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];

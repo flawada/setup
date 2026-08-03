@@ -17,7 +17,17 @@ fi
 
 printc "Downloading configuration"
 c curl -Lf https://raw.githubusercontent.com/flawada/setup/main/install/nixos/kde/files.tar -o /tmp/files.tar
-c tar -xf /tmp/files.tar --strip-components=1 -C "$HOME"
+c tar -xf /tmp/files.tar
+c cp -r "/tmp/files/.nixos" "$HOME"
+
+printc "Adjusting configuration"
+sed -i "s/USERNAME/$USER/g" "$HOME/.nixos/configuration.nix"
+sed -i "s/HOSTNAME/$HOST/g" "$HOME/.nixos/flake.nix"
+sed -i "s/USERNAME/$USER/g" "$HOME/.nixos/home.nix"
+if grep -q "0x10de" /sys/bus/pci/devices/*/vendor && ! rpm -q akmods; then
+  cat "/tmp/files/mod/nvidia.nix" >> "$HOME/.nixos/configuration.nix"
+fi
+echo "}" >> "$HOME/.nixos/configuration.nix"
 
 printc "Rebuilding system"
 c sudo nixos-rebuild switch --impure --flake ~/.nixos
