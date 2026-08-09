@@ -19,6 +19,7 @@ printc "Downloading configuration"
 c curl -Lf https://raw.githubusercontent.com/flawada/setup/main/install/nixos/kde/files.tar -o /tmp/files.tar
 c tar -xf /tmp/files.tar -C /tmp
 c cp -r "/tmp/files/.nixos" "$HOME"
+c cp -r "/tmp/files/.config" "$HOME"
 
 printc "Modifying configuration"
 printf "adjusting username and hostname\n"
@@ -35,10 +36,10 @@ echo "}" >> "$HOME/.nixos/configuration.nix"
 printc "Rebuilding system"
 c sudo nixos-rebuild switch --impure --flake ~/.nixos
 
-if ! [ -f "$HOME/wallpaper.jpg" ]; then
-  printc "Downloading wallpaper"
-  c curl -Lfo "$HOME/wallpaper.jpg" https://w.wallhaven.cc/full/k8/wallhaven-k8ldjq.jpg
-fi
+#if ! [ -f "$HOME/wallpaper.jpg" ]; then
+#  printc "Downloading wallpaper"
+#  c curl -Lfo "$HOME/wallpaper.jpg" https://w.wallhaven.cc/full/k8/wallhaven-k8ldjq.jpg
+#fi
 
 clear
 printf "%bDone. Rebooting in 10s..%b\n" "$GREEN" "$NC"
