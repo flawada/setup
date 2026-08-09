@@ -1,11 +1,11 @@
 ## [NixOS](https://nixos.org/download/#nixos-iso)
 
-! this distro is not on a stable version and will need manual adjustment !
+Install NixOs using the Graphical ISO image and select no desktop.
 
 Post-installation:
 - Log in and run the [bash script](https://github.com/flawada/setup/tree/main#installation)
 
 ## Todo
 
-- functional installation
-- home-manager configs
+- fully functional installation with hardware adjustments
+- switch to another DE
