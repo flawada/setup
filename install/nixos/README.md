@@ -7,5 +7,5 @@ Post-installation:
 
 ## Todo
 
-- fully functional installation with hardware adjustments
-- switch to another DE
+- clean installation with more adjustments
+- another DE?
