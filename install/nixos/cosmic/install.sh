@@ -16,7 +16,7 @@ else
 fi
 
 printc "Downloading configuration"
-c curl -Lf https://raw.githubusercontent.com/flawada/setup/main/install/nixos/kde/files.tar -o /tmp/files.tar
+c curl -Lf https://raw.githubusercontent.com/flawada/setup/main/install/nixos/cosmic/files.tar -o /tmp/files.tar
 c tar -xf /tmp/files.tar -C /tmp
 c cp -r "/tmp/files/.nixos" "$HOME"
 c cp -r "/tmp/files/.config" "$HOME"
