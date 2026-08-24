@@ -36,6 +36,9 @@ printc "Rebuilding system"
 c sudo nixos-rebuild switch --impure --flake ~/.nixos
 c sleep 10
 
+printc "Setting dark mode"
+nix-shell -p glib --run "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
+
 if ! [ -f "$HOME/.config/niri/wallpaper.jpg" ]; then
   printc "Downloading wallpaper"
   c curl -Lfo "$HOME/.config/niri/wallpaper.jpg" https://w.wallhaven.cc/full/k8/wallhaven-k8ldjq.jpg
