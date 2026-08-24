@@ -36,10 +36,16 @@ echo "}" >> "$HOME/.nixos/configuration.nix"
 printc "Rebuilding system"
 c sudo nixos-rebuild switch --impure --flake ~/.nixos
 
-#if ! [ -f "$HOME/wallpaper.jpg" ]; then
-#  printc "Downloading wallpaper"
-#  c curl -Lfo "$HOME/wallpaper.jpg" https://w.wallhaven.cc/full/k8/wallhaven-k8ldjq.jpg
-#fi
+if ! [ -f "$HOME/wallpaper.jpg" ]; then
+  printc "Downloading wallpaper"
+  sleep 10
+  c curl -Lfo "$HOME/niri/wallpaper.jpg" https://w.wallhaven.cc/full/k8/wallhaven-k8ldjq.jpg
+fi
+
+if ! [ -d "$HOME/.config/ghostty/shaders" ]; then
+  printc "Downloading ghostty cursor shaders"
+  c git clone https://github.com/sahaj-b/ghostty-cursor-shaders ~/.config/ghostty/shaders
+fi
 
 clear
 printf "%bDone. Rebooting in 10s..%b\n" "$GREEN" "$NC"
