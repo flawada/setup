@@ -37,8 +37,9 @@ c sudo nixos-rebuild switch --impure --flake ~/.nixos
 c sleep 10
 
 if ! [ -f "$HOME/.config/niri/wallpaper.jpg" ]; then
-  printc "Downloading wallpaper & Adjusting theme"
-  nix-shell -p glib --run "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
+  printc "Downloading wallpaper & One time user settings"
+  c nix-shell -p glib --run "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
+  c nix-shell -p xdg-user-dirs --run xdg-user-dirs-update
   c curl -Lfo "$HOME/.config/niri/wallpaper.jpg" https://w.wallhaven.cc/full/k8/wallhaven-k8ldjq.jpg
 fi
 
