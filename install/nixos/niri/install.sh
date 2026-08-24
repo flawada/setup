@@ -36,7 +36,7 @@ printc "Rebuilding system"
 c nix flake update --flake ~/.nixos
 c sudo nixos-rebuild boot --impure --flake ~/.nixos
 
-if ! [ -f "$HOME/wallpaper.jpg" ]; then
+if ! [ -f "$HOME/.config/niri/wallpaper.jpg" ]; then
   printc "Downloading wallpaper"
   c curl -Lfo "$HOME/.config/niri/wallpaper.jpg" https://w.wallhaven.cc/full/k8/wallhaven-k8ldjq.jpg
 fi
