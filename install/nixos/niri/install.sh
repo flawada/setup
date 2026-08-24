@@ -23,9 +23,8 @@ c cp -r "/tmp/files/.config" "$HOME"
 
 printc "Modifying configuration"
 printf "adjusting username and hostname\n"
-sed -i "s/USERNAME/$USER/g" "$HOME/.nixos/configuration.nix"
+#sed -i "s/USERNAME/$USER/g" "$HOME/.nixos/configuration.nix"
 sed -i "s/HOSTNAME/$HOSTNAME/g" "$HOME/.nixos/flake.nix"
-sed -i "s/USERNAME/$USER/g" "$HOME/.nixos/home.nix"
 if grep -q "0x10de" /sys/bus/pci/devices/*/vendor; then
   printf "adding nvidia modification\n"
   cat "/tmp/files/mod/nvidia.nix" >> "$HOME/.nixos/configuration.nix"
