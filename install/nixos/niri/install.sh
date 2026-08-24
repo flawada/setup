@@ -33,8 +33,8 @@ printf "closing configuration\n"
 echo "}" >> "$HOME/.nixos/configuration.nix"
 
 printc "Rebuilding system"
-c nix flake update --flake ~/.nixos
-c sudo nixos-rebuild boot --impure --flake ~/.nixos
+c sudo nixos-rebuild switch --impure --flake ~/.nixos
+c sleep 10
 
 if ! [ -f "$HOME/.config/niri/wallpaper.jpg" ]; then
   printc "Downloading wallpaper"
