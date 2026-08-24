@@ -38,7 +38,7 @@ c sudo nixos-rebuild boot --impure --flake ~/.nixos
 
 if ! [ -f "$HOME/wallpaper.jpg" ]; then
   printc "Downloading wallpaper"
-  c curl -Lfo "$HOME/niri/wallpaper.jpg" https://w.wallhaven.cc/full/k8/wallhaven-k8ldjq.jpg
+  c curl -Lfo "$HOME/.config/niri/wallpaper.jpg" https://w.wallhaven.cc/full/k8/wallhaven-k8ldjq.jpg
 fi
 
 if ! [ -d "$HOME/.config/ghostty/shaders" ]; then
