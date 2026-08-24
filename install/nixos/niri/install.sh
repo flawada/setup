@@ -16,7 +16,7 @@ else
 fi
 
 printc "Downloading configuration"
-c curl -Lf https://raw.githubusercontent.com/flawada/setup/main/install/nixos/cosmic/files.tar -o /tmp/files.tar
+c curl -Lf https://raw.githubusercontent.com/flawada/setup/main/install/nixos/niri/files.tar -o /tmp/files.tar
 c tar -xf /tmp/files.tar -C /tmp
 c cp -r "/tmp/files/.nixos" "$HOME"
 c cp -r "/tmp/files/.config" "$HOME"
@@ -35,10 +35,10 @@ echo "}" >> "$HOME/.nixos/configuration.nix"
 
 printc "Rebuilding system"
 c sudo nixos-rebuild switch --impure --flake ~/.nixos
+sleep 10
 
 if ! [ -f "$HOME/wallpaper.jpg" ]; then
   printc "Downloading wallpaper"
-  sleep 10
   c curl -Lfo "$HOME/niri/wallpaper.jpg" https://w.wallhaven.cc/full/k8/wallhaven-k8ldjq.jpg
 fi
 

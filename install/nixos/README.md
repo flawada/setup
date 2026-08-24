@@ -7,5 +7,5 @@ Post-installation:
 
 ## Todo
 
-- clean installation with more adjustments
-- another DE?
+- more adjustments on installation
+- upd config
