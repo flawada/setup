@@ -7,5 +7,6 @@ Post-installation:
 
 ## Todo
 
+- fix setting dark theme on installation
 - more adjustments on installation
 - upd config
