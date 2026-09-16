@@ -12,11 +12,9 @@ Mainly for myself.
 ## Installation
 
 ```bash
-bash <(curl "https://raw.githubusercontent.com/flawada/setup/main/setup.sh")
+bash <(curl https://raw.githubusercontent.com/flawada/setup/main/setup.sh)
 ```
 
 ## Todo
 
-- distro: nixos ~
-- distro: bedrock linux
-
+- Nothing specific planned right now except improvements
