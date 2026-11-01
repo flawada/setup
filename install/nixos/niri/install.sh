@@ -38,7 +38,7 @@ c sleep 10
 
 if ! [ -f "$HOME/.config/niri/wallpaper.jpg" ]; then
   printc "Downloading wallpaper & Running one time user settings"
-  c nix-shell -p glib --run "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
+  #c nix-shell -p glib --run "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'" #add to niri
   c nix-shell -p xdg-user-dirs --run xdg-user-dirs-update
   c curl -Lfo "$HOME/.config/niri/wallpaper.jpg" https://w.wallhaven.cc/full/k8/wallhaven-k8ldjq.jpg
 fi
