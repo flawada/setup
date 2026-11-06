@@ -12,4 +12,5 @@ Post-installation:
 
 ## Todo
 
-- fix xdg-desktop-portal
+- adapt to setup.sh changes
+- check xdg-desktop-portal?
