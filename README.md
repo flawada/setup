@@ -17,4 +17,4 @@ bash <(curl https://raw.githubusercontent.com/flawada/setup/main/setup.sh)
 
 ## Todo
 
-- Nothing specific planned right now except improvements
+- improve setup.sh install script structure for future additions
