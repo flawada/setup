@@ -16,7 +16,7 @@ else
 fi
 
 printc "Downloading configuration"
-c curl -Lf https://raw.githubusercontent.com/flawada/setup/main/install/nixos/niri/files.tar -o /tmp/files.tar
+c curl -Lf https://raw.githubusercontent.com/flawada/setup/main/install/nixos/mangowm/files.tar -o /tmp/files.tar
 c tar -xf /tmp/files.tar -C /tmp
 c cp -r "/tmp/files/.nixos" "$HOME"
 c cp -r "/tmp/files/.config" "$HOME"
@@ -36,11 +36,10 @@ printc "Rebuilding system"
 c sudo nixos-rebuild switch --impure --flake ~/.nixos
 c sleep 10
 
-if ! [ -f "$HOME/.config/niri/wallpaper.jpg" ]; then
+if ! [ -f "$HOME/.config/mango/wallpaper.jpg" ]; then
   printc "Downloading wallpaper & Running one time user settings"
-  #c nix-shell -p glib --run "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'" #add to niri
   c nix-shell -p xdg-user-dirs --run xdg-user-dirs-update
-  c curl -Lfo "$HOME/.config/niri/wallpaper.jpg" https://w.wallhaven.cc/full/k8/wallhaven-k8ldjq.jpg
+  c curl -Lfo "$HOME/.config/mango/wallpaper.jpg" https://w.wallhaven.cc/full/zp/wallhaven-zp2gdy.png
 fi
 
 if ! [ -d "$HOME/.config/ghostty/shaders" ]; then
