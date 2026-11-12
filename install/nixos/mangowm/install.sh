@@ -40,13 +40,13 @@ fi
 
 if ! [ -d "$HOME/.themes/Graphite-Dark" ]; then
   printc "Downloading Graphite-gtk-theme"
-  c git clone --depth 1 https://github.com/vinceliuice/Graphite-gtk-theme /tmp/Graphite-gtk-theme
+  c nix-shell -p git --run "git clone --depth 1 https://github.com/vinceliuice/Graphite-gtk-theme /tmp/Graphite-gtk-theme"
   c nix-shell -p sassc --run "cd /tmp/Graphite-gtk-theme && ./install.sh -n Graphite -c dark -l"
 fi
 
 if ! [ -d "$HOME/.config/ghostty/shaders" ]; then
   printc "Downloading ghostty cursor shaders"
-  c git clone --depth 1 https://github.com/sahaj-b/ghostty-cursor-shaders ~/.config/ghostty/shaders
+  c nix-shell -p git --run "git clone --depth 1 https://github.com/sahaj-b/ghostty-cursor-shaders ~/.config/ghostty/shaders"
 fi
 
 printc "Rebuilding system"
