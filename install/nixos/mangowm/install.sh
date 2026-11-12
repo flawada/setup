@@ -32,10 +32,6 @@ fi
 printf "closing configuration\n"
 echo "}" >> "$HOME/.nixos/configuration.nix"
 
-printc "Rebuilding system"
-c sudo nixos-rebuild switch --impure --flake ~/.nixos
-c sleep 10
-
 if ! [ -f "$HOME/.config/mango/wallpaper.jpg" ]; then
   printc "Downloading wallpaper & Running one time user settings"
   c nix-shell -p xdg-user-dirs --run xdg-user-dirs-update
@@ -52,6 +48,9 @@ if ! [ -d "$HOME/.config/ghostty/shaders" ]; then
   printc "Downloading ghostty cursor shaders"
   c git clone --depth 1 https://github.com/sahaj-b/ghostty-cursor-shaders ~/.config/ghostty/shaders
 fi
+
+printc "Rebuilding system"
+c sudo nixos-rebuild switch --impure --flake ~/.nixos
 
 clear
 printf "%bDone. Rebooting in 10s..%b\n" "$GREEN" "$NC"
