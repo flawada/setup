@@ -55,4 +55,4 @@ c sudo nixos-rebuild switch --impure --flake ~/.nixos
 clear
 printf "%bDone. Rebooting in 10s..%b\n" "$GREEN" "$NC"
 sleep 10
-c sudo reboot
+c reboot
