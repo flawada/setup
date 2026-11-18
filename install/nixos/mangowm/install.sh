@@ -35,7 +35,7 @@ echo "}" >> "$HOME/.nixos/configuration.nix"
 if ! [ -f "$HOME/.config/mango/wallpaper.jpg" ]; then
   printc "Downloading wallpaper & Running one time user settings"
   c nix-shell -p xdg-user-dirs --run xdg-user-dirs-update
-  c curl -Lfo "$HOME/.config/mango/wallpaper.jpg" https://w.wallhaven.cc/full/zp/wallhaven-zp2gdy.png
+  c curl -Lfo "$HOME/.config/mango/wallpaper.png" https://w.wallhaven.cc/full/xe/wallhaven-xe7ylv.png
 fi
 
 if ! [ -d "$HOME/.themes/Graphite-Dark" ]; then
