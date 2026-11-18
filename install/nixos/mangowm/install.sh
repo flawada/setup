@@ -50,7 +50,7 @@ if ! [ -d "$HOME/.config/ghostty/shaders" ]; then
 fi
 
 printc "Rebuilding system"
-c sudo nixos-rebuild switch --impure --flake ~/.nixos
+c sudo nixos-rebuild boot --impure --flake ~/.nixos
 
 clear
 printf "%bDone. Rebooting in 10s..%b\n" "$GREEN" "$NC"
