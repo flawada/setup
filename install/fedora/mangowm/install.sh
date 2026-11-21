@@ -62,7 +62,7 @@ for d in /sys/class/drm/card*-*; do
   MONNAME=${d##*/}
   MONNAME=${MONNAME#card*-}
 
-  cat <<EOF >> ~/.config/mango/config.toml
+  c cat <<EOF >> ~/.config/mango/config.toml
 [[rule.monitor_rule]]
 name = "$MONNAME"
 width = $MONWIDTH
