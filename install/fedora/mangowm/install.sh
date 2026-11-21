@@ -52,6 +52,28 @@ c curl -Lf https://raw.githubusercontent.com/flawada/setup/main/install/fedora/m
 c tar -xf /tmp/files.tar --strip-components=1 -C "$HOME"
 KBLAYOUT=$(localectl status | grep "X11 Layout" | awk '{print $3}')
 c sed -i "s/KBLAYOUT/$KBLAYOUT/" ~/.config/mango/config.toml
+for d in /sys/class/drm/card*-*; do
+  [ -f "$d/status" ] && [ "$(cat "$d/status")" = connected ] && [ -s "$d/modes" ] || continue
+
+  mode=$(head -n 1 "$d/modes")
+  MONWIDTH=${mode%x*}
+  MONHEIGHT=${mode#*x}
+  
+  MONNAME=${d##*/}
+  MONNAME=${MONNAME#card*-}
+
+  cat <<EOF >> ~/.config/mango/config.toml
+[[rule.monitor_rule]]
+name = "$MONNAME"
+width = $MONWIDTH
+height = $MONHEIGHT
+refresh = 60
+#x = 0
+#y = 0
+#scale = 1
+
+EOF
+done
 
 
 if ! [[ -d "$HOME/.zsh/zsh-autosuggestions" && -d "$HOME/.zsh/zsh-syntax-highlighting" ]]; then
