@@ -115,7 +115,7 @@ fi
 
 if ! [ -f "$HOME/.config/mango/wallpaper.png" ]; then
   printc "Downloading wallpaper"
-  c curl -Lfo "$HOME/.config/mango/wallpaper.png" https://w.wallhaven.cc/full/xe/wallhaven-xe7ylv.png
+  c curl -Lfo "$HOME/.config/mango/wallpaper" https://w.wallhaven.cc/full/48/wallhaven-48gv20.jpg
 fi
 
 if ! [[ "$SHELL" == *"zsh"* ]]; then
