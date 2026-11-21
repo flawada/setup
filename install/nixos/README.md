@@ -7,7 +7,6 @@ Post-installation:
 
 ## Todo
 
-- config cleanup/redo
 - adapt to coming setup.sh changes
 - full installer instead of only being able to run it after the nixos installation
 - more adjustments on installation (second DE?)

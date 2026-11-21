@@ -24,8 +24,13 @@ if ! rpm -q terra-release &>/dev/null; then
 fi
 
 if ! [[ -f "/etc/yum.repos.d/_copr:copr.fedorainfracloud.org:leloubil:wl-clip-persist.repo" ]];then
-  printc "Installing wl-clip-persist copr-repository"
+  printc "Enabling wl-clip-persist copr-repository"
   c sudo dnf copr enable -y leloubil/wl-clip-persist
+fi
+
+if ! [[ -f "/etc/yum.repos.d/_copr:copr.fedorainfracloud.org:imput:helium.repo" ]];then
+  printc "Enabling wl-clip-persist copr-repository"
+  c sudo dnf copr enable -y imput/helium
 fi
 
 printc "Installing mangowm"
@@ -33,9 +38,9 @@ c sudo dnf in -y mangowm
 printc "Installing system basics"
 c sudo dnf in -y xdg-desktop-portal xdg-desktop-portal-wlr xorg-x11-server-Xwayland xfce-polkit zsh
 printc "Installing dotfile requirements"
-c sudo dnf in -y mako waybar wlogout blueman-manager pavucontrol nmtui playerctl wlsunset swaybg gtklock rofi wl-clip-persist cliphist eza tar git
+c sudo dnf in -y mako waybar wlogout blueman-manager pavucontrol nmtui xdg-terminal-exec playerctl wlsunset swaybg gtklock rofi wl-clip-persist cliphist eza tar git
 printc "Installing core apps"
-c sudo dnf in -y firefox ghostty loupe kate thunar thunar-archive-plugin file-roller xdg-user-dirs
+c sudo dnf in -y helium-bin ghostty loupe helix thunar thunar-archive-plugin file-roller xdg-user-dirs
 
 if ! [[ -f "$HOME/.config/user-dirs.dirs" ]]; then
   printc "Creating user directories"
@@ -86,7 +91,7 @@ fi
 
 if ! [ -f "$HOME/.config/mango/wallpaper.png" ]; then
   printc "Downloading wallpaper"
-  c curl -Lfo "$HOME/.config/mango/wallpaper.png" https://w.wallhaven.cc/full/5y/wallhaven-5yr153.png
+  c curl -Lfo "$HOME/.config/mango/wallpaper.png" https://w.wallhaven.cc/full/xe/wallhaven-xe7ylv.png
 fi
 
 if ! [[ "$SHELL" == *"zsh"* ]]; then
@@ -96,9 +101,8 @@ fi
 
 if ! grep -q -- "--autologin $USER" /etc/systemd/system/getty@tty1.service.d/override.conf &> /dev/null; then
   printc "Enabling autologin"
-  #printf '[Service]\nExecStart=\nExecStart=-/usr/sbin/agetty --autologin %s --noclear %%I $TERM\n' "$USER" | c sudo systemctl edit getty@tty1 --stdin
   GETTY_CONF=$(printf '[Service]\nExecStart=\nExecStart=-/usr/sbin/agetty --autologin %s --noclear %%I $TERM\n' "$USER")
-  c sudo systemctl edit getty@tty1 --stdin <<< "$GETTY_CONF"
+  c sudo systemctl edit kmsconvt@tty1.service --stdin <<< "$GETTY_CONF"
   c sudo systemctl daemon-reload
 fi
 

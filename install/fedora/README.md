@@ -12,5 +12,5 @@ Post-installation:
 
 ## Todo
 
-- adapt to setup.sh changes
+- adapt to coming setup.sh changes
 - check xdg-desktop-portal?
