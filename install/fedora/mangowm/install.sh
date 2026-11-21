@@ -50,6 +50,8 @@ fi
 printc "Downloading dotfiles"
 c curl -Lf https://raw.githubusercontent.com/flawada/setup/main/install/fedora/mangowm/files.tar -o /tmp/files.tar
 c tar -xf /tmp/files.tar --strip-components=1 -C "$HOME"
+KBLAYOUT=$(localectl status | grep "X11 Layout" | awk '{print $3}')
+c sed -i "s/KBLAYOUT/$KBLAYOUT/" ~/.config/mango/config.toml
 
 
 if ! [[ -d "$HOME/.zsh/zsh-autosuggestions" && -d "$HOME/.zsh/zsh-syntax-highlighting" ]]; then
