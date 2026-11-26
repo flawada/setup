@@ -123,10 +123,10 @@ if ! [[ "$SHELL" == *"zsh"* ]]; then
   c sudo chsh -s "$(which zsh)" "$USER"
 fi
 
-if ! grep -q -- "--autologin $USER" /etc/systemd/system/getty@tty1.service.d/override.conf &> /dev/null; then
+if ! grep -q -- "--login" /etc/systemd/system/kmsconvt@tty1.service.d/override.conf &> /dev/null; then
   printc "Enabling autologin"
-  GETTY_CONF=$(printf '[Service]\nExecStart=\nExecStart=-/usr/sbin/agetty --autologin %s --noclear %%I $TERM\n' "$USER")
-  c sudo systemctl edit kmsconvt@tty1.service --stdin <<< "$GETTY_CONF"
+  KMSCON_CONF=$(printf '[Service]\nExecStart=\nExecStart=/usr/bin/kmscon --vt=%%I --no-switchvt --login -- /usr/bin/login -f %s\nTTYVTDisallocate=no\n' "$USER")
+  c sudo systemctl edit kmsconvt@tty1.service --stdin <<< "$KMSCON_CONF"
   c sudo systemctl daemon-reload
 fi
 
